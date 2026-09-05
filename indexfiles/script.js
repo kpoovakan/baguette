@@ -34,5 +34,7 @@ window.addEventListener("message", (event) => {
         console.log("Received data from GitHub OAuth: ", data.payload);
         const username = data.payload.username;
         document.getElementById("userInfo").innerText = username;
-    }    
+    } else if (data && data.type === 'GITHUB_SAVE_SUCCESS') {
+        console.log("Save successful!");
+    }
 });
