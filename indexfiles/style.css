@@ -1,10 +1,19 @@
 @charset "UTF-8";
 :root {
-    --colorBackground: #000000;
-    --colorForeground: #ffffff;
+    --colorBackground: #123538;
+    --colorForeground: #f7deed;
+    --colorAccent: #c8d4c4;
 }
 
 body {
     background-color: var(--colorBackground);
     color: var(--colorForeground);
+}
+
+button {
+    background-color: var(--colorAccent);
+    color: var(--colorBackground);
+    outline: none;
+    border: none;
+    border-radius: 3px;
 }
