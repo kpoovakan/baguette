@@ -1,8 +1,16 @@
 @charset "UTF-8";
 :root {
-    --colorBackground: #123538;
-    --colorForeground: #f7deed;
-    --colorAccent: #c8d4c4;
+    --colorBackground: #3b362b;
+    --colorForeground: #d3dcd0;
+    --colorAccent: #a0b69e;
+}
+.noscript {
+    position: fixed;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--colorBackground);
+    padding: 3vw;
 }
 
 body {
@@ -11,18 +19,91 @@ body {
     font-family: "Kachenjunga", sans-serif;
     font-weight: 400;
     font-style: normal;
+    font-size: 62.5%;
+    display: block;
+    a:link, a:visited {
+        color: var(--colorAccent);
+        text-decoration: none;
+        font-weight: 600;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+}
+p {
+    font-size: 1.0rem;
+}
+.content {
+    display: block;
+    width: 80vw;
+    margin: 0 auto;
+}
+.clear {
+    clear: both;
 }
 
-h1 {
+/*
+h1: heading
+h2: subheading
+h3: title
+*/
+h1, h2, h3 {
     font-family: "Hurricane", cursive;
-    font-size: 71px;
+}
+h1 {
+    font-size: 4.5rem;
+    margin: 0;
+    margin-top: 7vw;
+}
+h2 {
+    font-size: 3.1rem;
+    margin: 0;
+}
+h3 {
+    font-size: min(7.1rem, 31vw);
+    margin: 0;
+    margin-bottom: 13px;
 }
 
 button {
     background-color: var(--colorAccent);
     color: var(--colorBackground);
     outline: none;
-    border: none;
+    border: 3px solid var(--colorAccent);
     border-radius: 3px;
-    padding: 3px;
+    padding: 5px;
+    box-sizing: border-box;
+    font-size: 1.0rem;
+}
+button:hover {
+    color: var(--colorAccent);
+    background-color: var(--colorBackground);
+    cursor: pointer;
+}
+
+
+.mainHeader {
+    text-align: right;
+}
+.mainHeaderButtons {
+    display: inline;
+    margin: 0;
+    margin-left: 13px;
+    padding: 13px;
+    width: 113px;
+}
+.mainHeaderLess {
+    background-color: var(--colorBackground);
+    border-color: color-mix(in oklab, #00000000 50%, var(--colorForeground));
+    color: color-mix(in oklab, #00000000 50%, var(--colorForeground));
+}
+.mainHeaderLess:hover {
+    color: var(--colorBackground);
+    border-color: var(--colorForeground);
+    background-color: var(--colorForeground);
+}
+.mainHeaderButtonsContainer {
+    display: flex;
+    align-items: stretch;
+    float: right;
 }

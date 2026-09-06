@@ -1,6 +1,6 @@
 "use strict";
 // to ensure correct css styles, connect this javascript file to every html document
-// if javascript isn't supported, the default "madamoiselle" theme is used
+// if javascript isn't supported, the default "tofu" theme is used
 
 /* url has dark mode first, with darkest to lightest
 
@@ -21,6 +21,7 @@ const solarEclipse = `[
 // durian
 // https://coolors.co/000966-ff33dd-f8ff33
 // dark mode, with lightest to darkest
+//4D0054 background substitute
 const durian = `[
     "f8ff33",
     "ff33dd",
@@ -74,11 +75,11 @@ const madamoiselle = `[
 
 const colorThemes = `{
     "sunshine": ["#fffcf0","#fae588","#c4a20e"],
-    "solarEclipse": ["#382d00","#b19206","#fcefb4"],
-    "durian": ["#4D0054","#ff33dd","#f8ff33"],
+    "solarEclipse": ["#382d00","#e4c84a","#fcefb4"],
+    "durian": ["#000966","#f8ff33","#ff33dd"],
     "pastel": ["#d6daff","#5d6f9e","#182d3b"],
     "tofu": ["#3b362b","#a0b69e","#d3dcd0"],
-    "madamoiselle": ["#123538","#c8d4c4","#f7deed"]
+    "madamoiselle": ["#123538","#c8d4c4","#d3b0c5"]
 }`;
 
 

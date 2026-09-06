@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Baguette - for bakeries - from kpoovakan</title>
+        <title>Baguette - Home</title>
         <link rel="shortcut icon" type="image/svg+xml" href="indexfiles/favicon.png">
         <link rel="icon" type="image/svg+xml" href="indexfiles/favicon.svg">
 
@@ -12,10 +12,30 @@
 
         <link rel="stylesheet" type="text/css" href="indexfiles/style.css">
         <script src="indexfiles/color.js" defer></script>
+        <script src="indexfiles/clouddata.js" defer></script>
         <script src="indexfiles/script.js" defer></script>
     </head>
     <body>
-        <h1>Baguette</h1>
-        <p id="userInfo">Hello, world! User info will be displayed here. Everyday I see the quick brown fox jump over the lazy dog. I do not know why the fox does such a thing every single day. It is very interesting indeed.</p>
+        <noscript>
+            <div class="noscript">
+                <h1>oh no</h1>
+                <p>Our oven isn't working! It probably needs JavaScript to work. Please enable JavaScript. Then we can use our oven and you can use Baguette!</p>
+            </div>
+        </noscript>
+        <div class="content">
+            <div class="mainHeader">
+                <h3>Baguette</h3>
+                <div class="mainHeaderButtonsContainer">
+                    <button class="mainHeaderButtons mainHeaderLess" onclick="mainViewPlans()">view plans</button>
+                    <button class="mainHeaderButtons" onclick="clouddataLogin()">login <svg xmlns="http://www.w3.org/2000/svg" height="1.0rem" viewBox="0 -960 960 960" fill="currentcolor" style="vertical-align: middle;"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/></svg></button>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <h1>Overview</h1>
+            <p>FOR BAKERIES, FROM KPOOVAKAN — Built with small businesses in mind, Baguette is a web app for managing your commercial bakery. Organize orders and plan baking times for every item, and save all data to the cloud to sync across multiple devices.</p>
+            <p>Baguette is free for any professional bakery, including yours!</p>
+            <h1>Features</h1>
+            <p>Nothing yet...</p>
+        </div>
     </body>
 </html>
