@@ -8,6 +8,14 @@
 body {
     background-color: var(--colorBackground);
     color: var(--colorForeground);
+    font-family: "Kachenjunga", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h1 {
+    font-family: "Hurricane", cursive;
+    font-size: 71px;
 }
 
 button {
@@ -16,4 +24,5 @@ button {
     outline: none;
     border: none;
     border-radius: 3px;
+    padding: 3px;
 }
