@@ -4,7 +4,7 @@ window.addEventListener("message", (event) => {
     if (event.origin !== worker) return;
     const data = event.data;
     if (data && data.type === 'GITHUB_AUTH_SUCCESS') {
-        //console.log("Received data from GitHub OAuth: ", data.payload);
+        console.log("Received data from GitHub OAuth: ", data.payload);
         /*const username = data.payload.username;
         console.log(`Your username is ${username}`);*/
         globalThis.temp = JSON.stringify(data.payload);
