@@ -8,10 +8,9 @@ window.addEventListener("message", (event) => {
         /*const username = data.payload.username;
         console.log(`Your username is ${username}`);*/
         globalThis.temp = JSON.stringify(data.payload);
+        document.getElementById("debugger").innerHTML = globalThis.temp;
         window.localStorage.setItem("temp", globalThis.temp);
         globalThis.temp = data.payload;
-
-        document.getElementById("debugger").innerHTML = globalThis.temp;
     } else if (data && data.type === 'GITHUB_SAVE_SUCCESS') {
         console.log("this feature is still in progress.");
     }
