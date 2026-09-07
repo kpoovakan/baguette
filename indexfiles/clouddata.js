@@ -10,6 +10,8 @@ window.addEventListener("message", (event) => {
         globalThis.temp = JSON.stringify(data.payload);
         window.localStorage.setItem("temp", globalThis.temp);
         globalThis.temp = data.payload;
+
+        document.getElementById("debugger").innerHTML = globalThis.temp;
     } else if (data && data.type === 'GITHUB_SAVE_SUCCESS') {
         console.log("this feature is still in progress.");
     }
