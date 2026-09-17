@@ -12,7 +12,10 @@ window.addEventListener("message", (event) => {
         window.localStorage.setItem("temp", globalThis.temp);
         globalThis.temp = data.payload;
     } else if (data && data.type === 'GITHUB_SAVE_SUCCESS') {
-        console.log("this feature is still in progress.");
+        globalThis.backendSave.postMessage({
+            type: "GITHUB_SAVE_SEND",
+            payload: localStorage.getItem("temp")
+        }, worker);
     }
 });
 
@@ -22,8 +25,8 @@ function userLogin() {
     const left = window.screenX + (window.outerWidth - width) / 2;
     const top = window.screenY + (window.outerHeight - height) / 2;
 
-    window.open(
-        `${worker}/login`,
+    globalThis.backendAuth = window.open(
+        `${oauthLogin}`,
         'login to Baguette with GitHub OAuth',
         `width=${width},height=${height},top=${top},left=${left}`
     );
@@ -35,11 +38,14 @@ function userSave() {
     const left = window.screenX + (window.outerWidth - width) / 2;
     const top = window.screenY + (window.outerHeight - height) / 2;
 
-    window.open(
-        `${worker}/save`,
+    globalThis.backendSave = window.open(
+        `${oauthSave}`,
         'login to Baguette with GitHub OAuth',
         `width=${width},height=${height},top=${top},left=${left}`
     );
 }
 
 const worker = "https://baguette.kpoovakan.workers.dev";
+const clientId = "Ov23liAFMkeev404onXY";
+const oauthLogin = `https://github.com/login/oauth/authorize?client_id=${clientId}&scope=read:user&redirect_uri=https://baguette.kpoovakan.workers.dev/callback`;
+const oauthSave = `https://github.com/login/oauth/authorize?client_id=${clientId}&scope=read:user&redirect_uri=https://baguette.kpoovakan.workers.dev/success`;
