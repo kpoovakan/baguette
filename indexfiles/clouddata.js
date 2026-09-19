@@ -27,22 +27,33 @@ function userLogin() {
 
     globalThis.backendAuth = window.open(
         `${oauthLogin}`,
-        'login to Baguette with GitHub OAuth',
+        "login to Baguette with GitHub OAuth",
         `width=${width},height=${height},top=${top},left=${left}`
     );
 }
 
-function userSave() {
+async function userSave() {
     const width = 600;
     const height = 700;
     const left = window.screenX + (window.outerWidth - width) / 2;
     const top = window.screenY + (window.outerHeight - height) / 2;
 
-    globalThis.backendSave = window.open(
-        `${oauthSave}`,
-        'login to Baguette with GitHub OAuth',
-        `width=${width},height=${height},top=${top},left=${left}`
-    );
+    try {
+        await fetch(`${worker}/send`, {
+            method: "POST",
+            body: window.localStorage.getItem("temp"),
+            headers: {
+                "Content-type": "application/json"
+            }
+        });
+    } catch (error) {}
+    finally {
+        globalThis.backendSave = window.open(
+            `${oauthSave}`,
+            "login to Baguette with GitHub OAuth",
+            `width=${width},height=${height},top=${top},left=${left}`
+        );
+    }
 }
 
 const worker = "https://baguette.kpoovakan.workers.dev";
