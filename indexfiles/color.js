@@ -1,4 +1,6 @@
 "use strict";
+// DEPRECATED. There is now only one color theme for Baguette.
+
 // to ensure correct css styles, connect this javascript file to every html document
 // if javascript isn't supported, the default "tofu" theme is used
 
