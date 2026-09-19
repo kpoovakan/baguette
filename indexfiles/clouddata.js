@@ -55,8 +55,15 @@ async function userSave() {
         });
     } catch (error) {}
     finally {
+        if(window.localStorage.getItem("temp")) {
+            let temp = window.localStorage.getItem("temp");
+            temp = JSON.parse(temp);
+            var loginLink = `${oauthSave}?state=${temp.sha}`;
+        } else {
+            var loginLink = oauthSave;
+        }
         globalThis.backendSave = window.open(
-            `${oauthSave}`,
+            `${loginLink}`,
             "login to Baguette with GitHub OAuth",
             `width=${width},height=${height},top=${top},left=${left}`
         );
