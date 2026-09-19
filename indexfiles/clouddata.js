@@ -7,11 +7,12 @@ window.addEventListener("message", (event) => {
         console.log("Received data from GitHub OAuth: ", data.payload);
         /*const username = data.payload.username;
         console.log(`Your username is ${username}`);*/
-        globalThis.temp = JSON.stringify(data.payload);
-        document.getElementById("debugger").innerHTML = globalThis.temp;
-        window.localStorage.setItem("temp", globalThis.temp);
         globalThis.temp = data.payload;
-        window.localStorage.setItem("etag", data.payload.etag);
+        let idk = JSON.stringify(globalThis.temp.content);
+        window.localStorage.setItem("temp", idk);
+        window.localStorage.setItem("etag", globalThis.temp.etag);
+        window.localStorage.setItem("sha", globalThis.temp.sha);
+        globalThis.temp = idk;
     } else if (data && data.type === 'GITHUB_SAVE_SUCCESS') {
         globalThis.backendSave.postMessage({
             type: "GITHUB_SAVE_SEND",
@@ -55,10 +56,9 @@ async function userSave() {
         });
     } catch (error) {}
     finally {
-        if(window.localStorage.getItem("temp")) {
-            let temp = window.localStorage.getItem("temp");
-            temp = JSON.parse(temp);
-            var loginLink = `${oauthSave}?state=${temp.sha}`;
+        if(window.localStorage.getItem("sha")) {
+            let sha = window.localStorage.getItem("sha");
+            var loginLink = `${oauthSave}?state=${sha}`;
         } else {
             var loginLink = oauthSave;
         }
