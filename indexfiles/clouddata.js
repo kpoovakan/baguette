@@ -11,6 +11,7 @@ window.addEventListener("message", (event) => {
         document.getElementById("debugger").innerHTML = globalThis.temp;
         window.localStorage.setItem("temp", globalThis.temp);
         globalThis.temp = data.payload;
+        window.localStorage.setItem("etag", data.payload.etag);
     } else if (data && data.type === 'GITHUB_SAVE_SUCCESS') {
         globalThis.backendSave.postMessage({
             type: "GITHUB_SAVE_SEND",
@@ -25,8 +26,14 @@ function userLogin() {
     const left = window.screenX + (window.outerWidth - width) / 2;
     const top = window.screenY + (window.outerHeight - height) / 2;
 
+    if(window.localStorage.getItem("temp") && window.localStorage.getItem("etag")) {
+        var loginLink = `${oauthLogin}?state=${window.localStorage.getItem("etag")}`;
+    } else {
+        var loginLink = oauthLogin;
+    }
+
     globalThis.backendAuth = window.open(
-        `${oauthLogin}`,
+        `${loginLink}`,
         "login to Baguette with GitHub OAuth",
         `width=${width},height=${height},top=${top},left=${left}`
     );
