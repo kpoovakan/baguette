@@ -58,7 +58,7 @@ async function userSave() {
     finally {
         if(window.localStorage.getItem("sha")) {
             let sha = window.localStorage.getItem("sha");
-            var loginLink = `${oauthSave}?state=${sha}`;
+            var loginLink = `${oauthSave}&state=${sha}`;
         } else {
             var loginLink = oauthSave;
         }
