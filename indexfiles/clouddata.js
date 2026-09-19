@@ -27,7 +27,7 @@ function userLogin() {
     const top = window.screenY + (window.outerHeight - height) / 2;
 
     if(window.localStorage.getItem("temp") && window.localStorage.getItem("etag")) {
-        var loginLink = `${oauthLogin}?state=${window.localStorage.getItem("etag")}`;
+        var loginLink = `${oauthLogin}&state=${window.localStorage.getItem("etag")}`;
     } else {
         var loginLink = oauthLogin;
     }
