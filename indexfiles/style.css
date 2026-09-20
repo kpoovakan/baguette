@@ -16,8 +16,8 @@
 body {
     background-color: var(--colorBackground);
     color: var(--colorForeground);
-    font-family: "Kachenjunga", sans-serif;
-    font-weight: 400;
+    font-family: "Radio Canada", sans-serif;
+    font-weight: 300;
     font-style: normal;
     font-size: 62.5%;
     display: block;
@@ -31,11 +31,11 @@ body {
     }
 }
 p {
-    font-size: 1.0rem;
+    font-size: 1.1rem;
 }
 .content {
     display: block;
-    width: 80vw;
+    width: 70vw;
     margin: 0 auto;
 }
 .clear {
@@ -51,13 +51,14 @@ h1, h2, h3 {
     font-family: "Hurricane", cursive;
 }
 h1 {
-    font-size: 4.5rem;
+    font-size: 3.1rem;
     margin: 0;
     margin-top: 7vw;
 }
 h2 {
-    font-size: 3.1rem;
+    font-size: 1.3rem;
     margin: 0;
+    font-family: "Radio Canada", sans-serif;
 }
 h3 {
     font-size: min(7.1rem, 31vw);
@@ -73,7 +74,7 @@ button {
     border-radius: 3px;
     padding: 5px;
     box-sizing: border-box;
-    font-size: 1.0rem;
+    font-size: 1.1rem;
 }
 button:hover {
     color: var(--colorAccent);
@@ -106,4 +107,18 @@ button:hover {
     display: flex;
     align-items: stretch;
     float: right;
+}
+
+.plansBlock {
+    border: 1.314px solid var(--colorForeground);
+    border-radius: 3px;
+    width: max(50px, 31vw);
+    padding: 13px;
+    box-shadow: 0px 0px 13px -3px var(--colorForeground);
+}
+.plansContainer {
+    display: flex;
+    gap: max(16px, 1.314vw);
+    margin: 0 auto;
+    width: fit-content;
 }
