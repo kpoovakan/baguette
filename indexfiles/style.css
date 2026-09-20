@@ -1,7 +1,7 @@
 @charset "UTF-8";
 :root {
-    --colorBackground: #151515;
-    --colorForeground: #eaeaea;
+    --colorBackground: #0d1117;
+    --colorForeground: #f0f6fc;
     --colorAccent: #a0b69e;
 }
 .noscript {
