@@ -50,7 +50,7 @@ function clouddataLogin() {
 }
 
 function clouddataLogout() {
-    const confirmLogout = window.confirm("are you sure you want to log out? unsaved changes are unsaved.");
+    const confirmLogout = window.confirm("are you sure you want to log out? unsaved changes will be permanently lost.");
     if (!confirmLogout) {
         return;
     }
