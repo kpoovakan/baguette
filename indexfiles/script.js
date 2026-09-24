@@ -34,12 +34,19 @@ const contentLoggedOut = `
             <p>Built by <a href="https://kpoovakan.github.io">kpoovakan</a>, Baguette is a web app for professional bakeries.</p>
 `;
 const contentLoggedIn = `
-    <p>foo</p>
+    <h1 style="margin: 0;">Baguette</h1>
+    <p class="header">
+        <a href="javascript:void(0);" id="saveNowButton" style="pointer-events: none; color: color-mix(in oklab, #00000000 50%, var(--colorForeground))">cloud sync</a>⠀⠀⠀
+        <a href="https://github.com/kpoovakan/baguette/blob/main/README.md">docs</a>⠀⠀⠀
+        <a href="javascript:void(0);">settings</a>⠀⠀⠀
+        <a href="javascript:void(0);" onclick="clouddataLogout()">logout</a>
+    </p>
 `;
 
 window.addEventListener("load", function() {
     if (!window.localStorage.getItem("temp")) {
         document.getElementById("contentMain").innerHTML = contentLoggedOut;
+        document.getElementById("contentMain").style.width = "70vw";
     } else {
         document.getElementById("contentMain").innerHTML = contentLoggedIn;
     }
@@ -48,7 +55,6 @@ window.addEventListener("load", function() {
 function clouddataLogin() {
     userLogin();
 }
-
 function clouddataLogout() {
     const confirmLogout = window.confirm("are you sure you want to log out? unsaved changes will be permanently lost.");
     if (!confirmLogout) {
@@ -58,4 +64,19 @@ function clouddataLogout() {
     window.localStorage.removeItem("sha");
     window.localStorage.removeItem("etag");
     window.location.reload();
+}
+
+function saveNowButton(save) { // 1 for save, 0 for saved, changes the appearnace of the button and doesn't actually save anything
+    const button = document.getElementById("saveNowButton");
+    if (save === 1) {
+        button.style.color = "var(--colorForeground)";
+        button.style.pointerEvents = "auto";
+        button.innerText = "save now";
+    } else if (save === 0) {
+        button.style.color = "color-mix(in oklab, #00000000 50%, var(--colorForeground))";
+        button.style.pointerEvents = "none";
+        button.innerText = "saved to cloud";
+    } else {
+        console.error(`function saveNowButton has wrong parameter: ${save}`);
+    }
 }
