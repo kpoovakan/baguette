@@ -48,12 +48,13 @@ window.addEventListener("load", function() {
         document.getElementById("contentMain").innerHTML = contentLoggedOut;
         document.getElementById("contentMain").style.width = "70vw";
     } else {
-        document.getElementById("contentMain").innerHTML = contentLoggedIn;
+        uiLoginSetup();
     }
 });
 
 function clouddataLogin() {
     userLogin();
+    uiLoginSetup();
 }
 function clouddataLogout() {
     const confirmLogout = window.confirm("are you sure you want to log out? unsaved changes will be permanently lost.");
@@ -79,4 +80,7 @@ function saveNowButton(save) { // 1 for save, 0 for saved, changes the appearnac
     } else {
         console.error(`function saveNowButton has wrong parameter: ${save}`);
     }
+}
+function uiLoginSetup() {
+    document.getElementById("contentMain").innerHTML = contentLoggedIn;
 }
