@@ -83,4 +83,5 @@ function saveNowButton(save) { // 1 for save, 0 for saved, changes the appearnac
 }
 function uiLoginSetup() {
     document.getElementById("contentMain").innerHTML = contentLoggedIn;
+    document.getElementById("contentMain").style.width = "100%";
 }
