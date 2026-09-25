@@ -1,4 +1,7 @@
 "use strict";
+const svgAddNew = `
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0,0,29.86787,29.86787"><g transform="translate(-225.06606,-165.06607)"><g fill="none" stroke="currentcolor" stroke-width="6.5" stroke-linecap="round" stroke-miterlimit="10"><path d="M240,168.31607v23.36787"/><path d="M228.31606,180h23.36787"/></g></g></svg><!--rotationCenter:14.933935081565238:14.933934467116131-->
+`;
 const contentLoggedOut = `
             <div class="mainHeader">
                 <h3>Baguette</h3>
@@ -34,13 +37,14 @@ const contentLoggedOut = `
             <p>Built by <a href="https://kpoovakan.github.io">kpoovakan</a>, Baguette is a web app for professional bakeries.</p>
 `;
 const contentLoggedIn = `
-    <h1 style="margin: 0;">Baguette</h1>
+    <h1 style="margin: 0; color: var(--colorAccent);">Baguette</h1>
     <p class="header">
         <a href="javascript:void(0);" id="saveNowButton" style="pointer-events: none; color: color-mix(in oklab, #00000000 50%, var(--colorForeground))">cloud sync</a>⠀⠀⠀
         <a href="https://github.com/kpoovakan/baguette/blob/main/README.md">docs</a>⠀⠀⠀
         <a href="javascript:void(0);">settings</a>⠀⠀⠀
         <a href="javascript:void(0);" onclick="clouddataLogout()">logout</a>
     </p>
+    <button class="svgAddNew" onclick="itemAdd()">${svgAddNew}</button>
 `;
 
 window.addEventListener("load", function() {
