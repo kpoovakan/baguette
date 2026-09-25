@@ -138,3 +138,17 @@ button:hover {
     right: 13px;
     margin: 0;
 }
+
+.dayContainer {
+    /*position: relative;*/
+    margin: 31px;
+}
+.dayItem {
+    /*position: absolute;*/
+    width: 314px;
+    height: 31px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: #808080;
+    margin: 13px;
+}

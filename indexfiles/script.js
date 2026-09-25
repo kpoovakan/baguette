@@ -45,6 +45,24 @@ const contentLoggedIn = `
         <a href="javascript:void(0);" onclick="clouddataLogout()">logout</a>
     </p>
     <button class="svgAddNew" onclick="itemAdd()">${svgAddNew}</button>
+
+    <div class="dayContainer" id="day1">
+        <div class="dayItem">
+            <button onclick="itemMoveUp(this.parentNode)">^</button>
+            ONE
+            <button onclick="itemMoveDown(this.parentNode)">v</button>
+        </div>
+        <div class="dayItem">
+            <button onclick="itemMoveUp(this.parentNode)">^</button>
+            TWO
+            <button onclick="itemMoveDown(this.parentNode)">v</button>
+        </div>
+        <div class="dayItem">
+            <button onclick="itemMoveUp(this.parentNode)">^</button>
+            THREE
+            <button onclick="itemMoveDown(this.parentNode)">v</button>
+        </div>
+    </div>
 `;
 
 window.addEventListener("load", function() {
@@ -88,4 +106,24 @@ function saveNowButton(save) { // 1 for save, 0 for saved, changes the appearnac
 function uiLoginSetup() {
     document.getElementById("contentMain").innerHTML = contentLoggedIn;
     document.getElementById("contentMain").style.width = "100%";
+}
+
+function itemMove(thisElement, after, cont) {
+    const before = cont.children[after];
+    cont.insertBefore(thisElement, before);
+}
+function itemMoveUp(thisElement) {
+    const parent = thisElement.parentNode;
+    const thisIndex = Array.prototype.indexOf.call(parent.children, thisElement);
+    const after = thisIndex - 1;
+    itemMove(thisElement, after, parent);
+}
+function itemMoveDown(thisElement) {
+    const parent = thisElement.parentNode;
+    const thisIndex = Array.prototype.indexOf.call(parent.children, thisElement);
+    var after = thisIndex + 2;
+    if (after > parent.childElementCount) {
+        var after = 0;
+    }
+    itemMove(thisElement, after, parent);
 }
