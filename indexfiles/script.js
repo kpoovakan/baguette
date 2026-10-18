@@ -46,7 +46,8 @@ const contentLoggedIn = `
     </p>
     <button class="svgAddNew" onclick="itemAdd()">${svgAddNew}</button>
 
-    <div class="dayContainer" id="day1">
+    <div class="dayContainer">
+    <div class="dayColumn" id="day1">
         <div class="dayItem">
             <button onclick="itemMoveUp(this.parentNode)">^</button>
             ONE
@@ -62,6 +63,19 @@ const contentLoggedIn = `
             THREE
             <button onclick="itemMoveDown(this.parentNode)">v</button>
         </div>
+    </div>
+    <div class="dayColumn" id="day2">
+        <div class="dayItem">
+            <button onclick="itemMoveUp(this.parentNode)">^</button>
+            ONE
+            <button onclick="itemMoveDown(this.parentNode)">v</button>
+        </div>
+        <div class="dayItem">
+            <button onclick="itemMoveUp(this.parentNode)">^</button>
+            Everyday, I see the quick brown <br>fox jump over the lazy dog.
+            <button onclick="itemMoveDown(this.parentNode)">v</button>
+        </div>
+    </div>
     </div>
 `;
 
