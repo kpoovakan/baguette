@@ -1,21 +1,39 @@
 {
     "2026":[
         [
-            {
-                "name":"baguette",
-                "customer":"mister ze bald",
-                "hour":3,
-                "minute":14,
-                "clock":"am",
-                "month":9,
-                "day":28,
-                "paid":false,
-                "stage":"make and bake",
-                "other":""
-            }
+            [
+                {
+                    "name":"baguette",
+                    "customer":"mister ze bald",
+                    "hour":3,
+                    "minute":14,
+                    "clock":"am",
+                    "month":9,
+                    "day":28,
+                    "paid":false,
+                    "stage":"make and bake",
+                    "check":false,
+                    "color":"yellow",
+                    "other":""
+                },
+                {
+                    "name":"poisonous muffins",
+                    "customer":"madamoiselle",
+                    "hour":7,
+                    "minute":22,
+                    "clock":"pm",
+                    "month":3,
+                    "day":14,
+                    "paid":true,
+                    "stage":"oven",
+                    "check":true,
+                    "color":"green",
+                    "other":""
+                }
+            ]
         ],
         [
-            {}
+            []
         ]
     ],
     "2027":[]
