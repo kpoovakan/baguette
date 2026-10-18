@@ -57,6 +57,7 @@ h3: title
 */
 h1, h2, h3 {
     font-family: "Hurricane", cursive;
+    font-weight: normal;
 }
 h1 {
     font-size: 3.1rem;
