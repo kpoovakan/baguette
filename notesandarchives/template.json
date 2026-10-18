@@ -1,0 +1,22 @@
+{
+    "2026":[
+        [
+            {
+                "name":"baguette",
+                "customer":"mister ze bald",
+                "hour":3,
+                "minute":14,
+                "clock":"am",
+                "month":9,
+                "day":28,
+                "paid":false,
+                "stage":"make and bake",
+                "other":""
+            }
+        ],
+        [
+            {}
+        ]
+    ],
+    "2027":[]
+}
