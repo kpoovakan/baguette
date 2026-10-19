@@ -47,33 +47,16 @@ const contentLoggedIn = `
     <button class="svgAddNew" onclick="itemAdd()">${svgAddNew}</button>
 
     <div class="dayContainer">
-        <div class="dayColumn" id="day1">
-            <div class="dayItem">
-                <div class="dayBar"><img src="/indexfiles/false.svg"><button onclick="itemMoveUp(this.parentNode.parentNode)">^</button><button onclick="itemMoveDown(this.parentNode.parentNode)">v</button></div>
-                <div class="dayInfo">
-                    <br>
-                    <p class="str">Poisonous Muffins</p>
-                    <p><span>For Ze Bald</span>⠀⠀⠀<span>Unpaid</span></p>
-                    <p class="str">Delivery 3:14 AM on Wed 9/28</p>
-                    <p>Make and bake</p>
-                    <p class="str">No eggs</p>
-                </div>
-            </div>
-            <div class="dayItem">
-                <div class="dayBar"><img src="/indexfiles/false.svg"><button onclick="itemMoveUp(this.parentNode.parentNode)">^</button><button onclick="itemMoveDown(this.parentNode.parentNode)">v</button></div>
-                <div class="dayInfo">
-                    <br>
-                    <p class="str">Edible Muffins</p>
-                    <p><span>For Ze Bald</span>⠀⠀⠀<span>Unpaid</span></p>
-                    <p class="str">Delivery 3:14 AM on Wed 9/28</p>
-                    <p>Make and bake</p>
-                    <p class="str">No eggs</p>
-                </div>
-            </div>
-        </div>
+        <div class="dayColumn" id="day1"></div>
+        <div class="dayColumn" id="day2"></div>
+        <div class="dayColumn" id="day3"></div>
+        <div class="dayColumn" id="day4"></div>
+        <div class="dayColumn" id="day5"></div>
+        <div class="dayColumn" id="day6"></div>
+        <div class="dayColumn" id="day7"></div>
     </div>
 `;
-const reference = `
+const reference1 = `
 <div class="dayContainer">
     <div class="dayColumn" id="day1">
         <div class="dayItem">
@@ -105,6 +88,19 @@ const reference = `
         </div>
     </div>
 </div>
+`;
+const reference2 = `
+            <div class="dayItem" id="sdkgxvbc">
+                <div class="dayBar"><img src="/indexfiles/false.svg"><button onclick="itemMoveUp(this.parentNode.parentNode)">^</button><button onclick="itemMoveDown(this.parentNode.parentNode)">v</button></div>
+                <div class="dayInfo">
+                    <br>
+                    <p class="str">Poisonous Muffins</p>
+                    <p><span>For Ze Bald</span>⠀⠀⠀<span>Unpaid</span></p>
+                    <p class="str">Delivery 3:14 AM on Wed 9/28</p>
+                    <p>Make and bake</p>
+                    <p class="str">No eggs</p>
+                </div>
+            </div>
 `;
 
 window.addEventListener("load", function() {
@@ -168,4 +164,79 @@ function itemMoveDown(thisElement) {
         var after = 0;
     }
     itemMove(thisElement, after, parent);
+}
+
+function addItem(column, data) {
+    const colors = {
+        pink:"#ff33dd",
+        purple:"#bf96ca",
+        teal:"#8bd5cd",
+        yellow:"#ffd000",
+        green:"#98c28a",
+        blue:"#140094",
+        red:"#d30000",
+        orange:"#ff7700"
+    };
+    if (!column || !data) {
+        console.error("no data given to addItem function");
+        return;
+    }
+    column = String(column);
+    const clmn = document.getElementById(`day${column}`);
+    const thisItem = document.createElement("div");
+    thisItem.className = "dayItem";
+    thisItem.id = data.id;
+    thisItem.style.setProperty("--color", colors[data.color]);
+
+    const dayBar = document.createElement("div");
+    dayBar.className = "dayBar";
+    const check = document.createElement("img");
+    check.src = `/indexfiles/${data.check}.svg`;
+    const up = document.createElement("button");
+    up.setAttribute("onclick", "itemMoveUp(this.parentNode.parentNode)");
+    up.innerText = "^";
+    const down = document.createElement("button");
+    down.setAttribute("onclick", "itemMoveDown(this.parentNode.parentNode)");
+    down.innerText = "v";
+    dayBar.appendChild(check);
+    dayBar.appendChild(up);
+    dayBar.appendChild(down);
+
+    const dayInfo = document.createElement("div");
+    dayInfo.className = "dayInfo";
+    const name = document.createElement("p");
+    name.className = "str";
+    name.innerText = data.name;
+    const next = document.createElement("p");
+    const customer = document.createElement("span");
+    customer.innerText = data.customer;
+    var paid = document.createElement("span");
+    if (data.paid) {
+        paid.innerText = "paid";
+    } else {
+        paid.innerText = "unpaid";
+    }
+    next.appendChild(customer);
+    next.innerHTML = next.innerHTML + "⠀⠀⠀";
+    next.appendChild(paid);
+    const delivery = document.createElement("p");
+    delivery.className = "str";
+    delivery.innerText = `Delivery ${data.hour}\:${data.minute} ${data.clock.toUpperCase()} on ${data.month}/${data.day}`;
+    const stage = document.createElement("p");
+    stage.innerText = data.stage;
+    if (!data.other == "" && !data.other == null && !data.other == undefined) {
+        var other = document.createElement("p");
+        other.innerText = data.other;
+        other.className = "str";
+    }
+    dayInfo.appendChild(document.createElement("br"));
+    dayInfo.appendChild(name);
+    dayInfo.appendChild(next);
+    dayInfo.appendChild(delivery);
+    dayInfo.appendChild(stage);
+    if (other) dayInfo.appendChild(other);
+
+    thisItem.appendChild(dayBar);
+    thisItem.appendChild(dayInfo);
+    clmn.appendChild(thisItem);
 }
