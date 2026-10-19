@@ -186,6 +186,9 @@ async function itemComplete(thisElement) {
     var json = JSON.stringify(globalThis.temp);
     window.localStorage.setItem("temp", json);
     console.log(json);
+    var color = window.getComputedStyle(thisElement);
+    var color = color.getPropertyValue("--color");
+    document.getElementById(id).style.setProperty("--color", `color-mix(in oklab, #00000000 50%, ${color})`)
 }
 
 function addItem(column, data) {
