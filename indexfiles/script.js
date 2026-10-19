@@ -177,6 +177,7 @@ function itemMoveDown(thisElement) {
     itemMove(thisElement, after, parent);
 }
 async function itemComplete(thisElement) {
+    if (thisElement.src === "/indexfiles/true.svg") return;
     const id = thisElement.parentNode.parentNode.id;
     const item = globalThis.temp[currentYear][currentMonth][currentDay][id]["name"];
     const confirm = window.confirm(`You are about to mark ${item} as complete. Press cancel if ${item} has not been completed.`);
