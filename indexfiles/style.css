@@ -178,8 +178,10 @@ fuschia, purple, teal, yellow, green, blue, red, orange */
     height: 100%;
     flex: 0;
     gap: 13px;
-    width: min(50px);
-    margin: 13px;
+    width: max(50px);
+    margin: 0;
+    padding: 13px;
+    box-sizing: border-box;
 }
 .dayBar button {
     width: 100%;
@@ -201,4 +203,11 @@ fuschia, purple, teal, yellow, green, blue, red, orange */
 .dayInfo {
     flex: 1;
     height: 100%;
+}
+.dayInfo p {
+    margin: 0;
+    margin-bottom: 3px;
+}
+.str {
+    font-weight: 600;
 }

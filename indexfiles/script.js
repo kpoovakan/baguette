@@ -49,7 +49,26 @@ const contentLoggedIn = `
     <div class="dayContainer">
         <div class="dayColumn" id="day1">
             <div class="dayItem">
-                <div class="dayBar"><img src="/indexfiles/false.svg"><button onclick="itemMoveUp(this.parentNode)">^</button><button onclick="itemMoveDown(this.parentNode)">v</button></div>
+                <div class="dayBar"><img src="/indexfiles/false.svg"><button onclick="itemMoveUp(this.parentNode.parentNode)">^</button><button onclick="itemMoveDown(this.parentNode.parentNode)">v</button></div>
+                <div class="dayInfo">
+                    <br>
+                    <p class="str">Poisonous Muffins</p>
+                    <p><span>For Ze Bald</span>⠀⠀⠀<span>Unpaid</span></p>
+                    <p class="str">Delivery 3:14 AM on Wed 9/28</p>
+                    <p>Make and bake</p>
+                    <p class="str">No eggs</p>
+                </div>
+            </div>
+            <div class="dayItem">
+                <div class="dayBar"><img src="/indexfiles/false.svg"><button onclick="itemMoveUp(this.parentNode.parentNode)">^</button><button onclick="itemMoveDown(this.parentNode.parentNode)">v</button></div>
+                <div class="dayInfo">
+                    <br>
+                    <p class="str">Edible Muffins</p>
+                    <p><span>For Ze Bald</span>⠀⠀⠀<span>Unpaid</span></p>
+                    <p class="str">Delivery 3:14 AM on Wed 9/28</p>
+                    <p>Make and bake</p>
+                    <p class="str">No eggs</p>
+                </div>
             </div>
         </div>
     </div>
