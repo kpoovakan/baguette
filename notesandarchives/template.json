@@ -1,8 +1,8 @@
 {
     "2026":[
         [
-            [
-                {
+            {
+                "sdkgxvbc":{
                     "name":"baguette",
                     "customer":"mister ze bald",
                     "hour":3,
@@ -14,10 +14,9 @@
                     "stage":"make and bake",
                     "check":false,
                     "color":"yellow",
-                    "other":"",
-                    "id":"sdkgxvbc"
+                    "other":""
                 },
-                {
+                "qwyhjmnkb":{
                     "name":"poisonous muffins",
                     "customer":"madamoiselle",
                     "hour":7,
@@ -29,10 +28,9 @@
                     "stage":"oven",
                     "check":true,
                     "color":"green",
-                    "other":"",
-                    "id":"qwyhjmnkb"
+                    "other":""
                 }
-            ]
+            }
         ],
         [
             []
