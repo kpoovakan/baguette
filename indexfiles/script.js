@@ -103,12 +103,23 @@ const reference2 = `
             </div>
 `;
 
+const d = new Date();
+const currentYear = d.getFullYear().toString();
+const currentMonth = d.getMonth().toString();
+const currentDay = d.getDate().toString();
+
 window.addEventListener("load", function() {
     if (!window.localStorage.getItem("temp")) {
         document.getElementById("contentMain").innerHTML = contentLoggedOut;
         document.getElementById("contentMain").style.width = "70vw";
     } else {
+        if (window.location.href === "https://baguette.katanya.dev") {
+            clouddataLogin();
+            return;
+        }
         uiLoginSetup();
+        globalThis.temp = window.localStorage.getItem("temp");
+        globalThis.temp = JSON.parse(globalThis.temp);
     }
 });
 
@@ -165,6 +176,17 @@ function itemMoveDown(thisElement) {
     }
     itemMove(thisElement, after, parent);
 }
+async function itemComplete(thisElement) {
+    const id = thisElement.parentNode.parentNode.id;
+    const item = globalThis.temp[currentYear][currentMonth][currentDay][id]["name"];
+    const confirm = window.confirm(`You are about to mark ${item} as complete. Press cancel if ${item} has not been completed.`);
+    if (!confirm) return;
+    thisElement.src = "/indexfiles/true.svg";
+    globalThis.temp[currentYear][currentMonth][currentDay][id]["check"] = true;
+    var json = JSON.stringify(globalThis.temp);
+    window.localStorage.setItem("temp", json);
+    console.log(json);
+}
 
 function addItem(column, data) {
     const colors = {
@@ -192,6 +214,7 @@ function addItem(column, data) {
     dayBar.className = "dayBar";
     const check = document.createElement("img");
     check.src = `/indexfiles/${data.check}.svg`;
+    check.setAttribute("onclick", "itemComplete(this)");
     const up = document.createElement("button");
     up.setAttribute("onclick", "itemMoveUp(this.parentNode.parentNode)");
     up.innerText = "^";
