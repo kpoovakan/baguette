@@ -47,6 +47,15 @@ const contentLoggedIn = `
     <button class="svgAddNew" onclick="itemAdd()">${svgAddNew}</button>
 
     <div class="dayContainer">
+        <div class="dayColumn" id="day1">
+            <div class="dayItem">
+                <div class="dayBar"><img src="/indexfiles/false.svg"><button onclick="itemMoveUp(this.parentNode)">^</button><button onclick="itemMoveDown(this.parentNode)">v</button></div>
+            </div>
+        </div>
+    </div>
+`;
+const reference = `
+<div class="dayContainer">
     <div class="dayColumn" id="day1">
         <div class="dayItem">
             <button onclick="itemMoveUp(this.parentNode)">^</button>
@@ -76,7 +85,7 @@ const contentLoggedIn = `
             <button onclick="itemMoveDown(this.parentNode)">v</button>
         </div>
     </div>
-    </div>
+</div>
 `;
 
 window.addEventListener("load", function() {

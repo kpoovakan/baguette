@@ -157,12 +157,48 @@ button:hover {
     align-items: stretch;
     flex: 1;
 }
+/* https://coolors.co/ff33dd-bf96ca-8bd5cd-ffd000-98c28a-140094-d30000-FF7700
+fuschia, purple, teal, yellow, green, blue, red, orange */
 .dayItem {
     width: 100%;
     height: 100%;
     box-sizing: border-box;
     border-radius: 3px;
-    background-color: #808080;
     margin: 0;
     flex: 0 1 0;
+    display: flex;
+    flex-direction: row;
+    --color: #98c28a;
+    background-color: var(--color);
+    color: var(--colorForeground);
+}
+.dayBar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex: 0;
+    gap: 13px;
+    width: min(50px);
+    margin: 13px;
+}
+.dayBar button {
+    width: 100%;
+    color: var(--color);
+    background-color: var(--colorForeground);
+    border-color: var(--colorForeground);
+}
+.dayBar button:hover {
+    background-color: var(--color);
+    color: var(--colorForeground);
+}
+.dayBar img {
+    width: 100%;
+    display: block;
+}
+.dayBar img:hover {
+    cursor: pointer;
+}
+.dayInfo {
+    flex: 1;
+    height: 100%;
 }
