@@ -14,7 +14,8 @@
                     "stage":"make and bake",
                     "check":false,
                     "color":"yellow",
-                    "other":""
+                    "other":"",
+                    "id":"sdkgxvbc"
                 },
                 "qwyhjmnkb":{
                     "name":"poisonous muffins",
@@ -28,7 +29,8 @@
                     "stage":"oven",
                     "check":true,
                     "color":"green",
-                    "other":""
+                    "other":"",
+                    "id":"qwyhjmnkb"
                 }
             }
         ],
