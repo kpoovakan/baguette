@@ -182,17 +182,15 @@ function getDaysThisWeek(daysInMonth) {
         }
         return array;
     } else if (!(currentMonth === 11)) { //if current month isn't December
-        var num = "";
-        for (var num = 0; num < daysInMonth; num++) {
+        const firstMonth = daysInMonth - currentDay; //days in first month that will be "fetched"
+        const secondMonth = end - daysInMonth + 1; //days in second month that will be "fetched"
+        for (let i = 0; i < firstMonth; i++) {
             let day = Number(currentDay);
-            day = day + num;
+            day = day + i; //the day being tracked for this i
             let cur = globalThis.temp[currentYear][currentMonth];
             if (cur === undefined) {
-                for (; day < daysInMonth; day++ ) {
-                    console.log(day);
-                    array.push(undefined);
-                }
-                break;
+                array.push(undefined);
+                continue; //cancels rest of loop for the turn and goes to next i
             }
             cur = cur[day];
             if (cur === undefined) {
@@ -201,16 +199,16 @@ function getDaysThisWeek(daysInMonth) {
                 array.push(cur);
             }
         }
-        console.log(array);
-        for (; num < end; num++) {
-            let day = Number(currentDay);
-            day = day + num;
-            day = day - daysInMonth;
+        for (let i = 0; i < secondMonth; i++) {
+            //so here, you would get the first day, then the second, then the third, and keep going, until you get the secondMonth variable's day, then you stop. like.. get the i+1 day?
+            let day = i + 1;
             let month = Number(currentMonth);
             month = month + 1;
-            month = String(month);
             let cur = globalThis.temp[currentYear][month];
-            if (cur === undefined) return array;
+            if (cur === undefined) {
+                array.push(undefined);
+                continue;
+            }
             cur = cur[day];
             if (cur === undefined) {
                 array.push(undefined);
@@ -218,38 +216,9 @@ function getDaysThisWeek(daysInMonth) {
                 array.push(cur);
             }
         }
-        return array;
-    } else { //current month is December AND it's the end of december, so we gotta code stuff to account for the new year
-        var num = "";
-        for (var num = 0; num < daysInMonth; num++) {
-            let day = Number(currentDay);
-            day = day + num;
-            let cur = globalThis.temp[currentYear][currentMonth][day];
-            if (cur === undefined) {
-                array.push(undefined);
-            } else {
-                array.push(cur);
-            }
-        }
-        var year = Number(currentYear);
-        var year = year + 1;
-        for (; num < end; num++) {
-            let day = Number(currentDay);
-            day = day + num;
-            day = day - daysInMonth;
-            let month = Number(currentMonth);
-            month = month + 1;
-            month = String(month);
-            let cur = globalThis.temp[year][month];
-            if (cur === undefined) return array;
-            cur = cur[day];
-            if (cur === undefined) {
-                array.push(undefined);
-            } else {
-                array.push(cur);
-            }
-        }
-        return array;
+        return array; //I hope this works...
+    } else { //current month is December AND it's the end of December, so we gotta code stuff to account for the new year
+        return undefined;
     }
 }
 
