@@ -103,7 +103,7 @@ const reference2 = `
             </div>
 `;
 
-const d = new Date();
+const d = new Date("2026-11-29");
 const currentYear = d.getFullYear().toString();
 const currentMonth = d.getMonth().toString();
 const currentDay = d.getDate().toString();
@@ -117,9 +117,9 @@ window.addEventListener("load", function() {
             clouddataLogin();
             return;
         }
-        uiLoginSetup();
         globalThis.temp = window.localStorage.getItem("temp");
         globalThis.temp = JSON.parse(globalThis.temp);
+        uiLoginSetup();
     }
 });
 
@@ -157,6 +157,100 @@ function uiLoginSetup() {
     document.getElementById("contentMain").style.width = "100%";
     const thisYear = globalThis.temp[currentYear];
     const thisMonth = globalThis.temp[currentMonth];
+    var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    if (currentYear % 4 === 0) daysInMonth[1] = 29;
+    const array = getDaysThisWeek(daysInMonth);
+    console.log(array);
+}
+function getDaysThisWeek(daysInMonth) {
+    daysInMonth = daysInMonth[currentMonth];
+    let end = Number(currentDay) + 6; // becuz if today is the 11th, then 11+6=17, and we display days 11-17, inclusive.
+    const array = new Array(); //such a creative array name...
+    if (!(end > daysInMonth)) {
+        //all days displayed are in current month
+        for (let i = 0; i < 7; i++) {
+            let day = Number(currentDay);
+            day = day + i;
+            let cur = globalThis.temp[currentYear][currentMonth];
+            if (cur === undefined) return array;
+            cur = cur[day];
+            if (cur === undefined) {
+                array.push(undefined);
+            } else {
+                array.push(cur);
+            }
+        }
+        return array;
+    } else if (!(currentMonth === 11)) { //if current month isn't December
+        var num = "";
+        for (var num = 0; num < daysInMonth; num++) {
+            let day = Number(currentDay);
+            day = day + num;
+            let cur = globalThis.temp[currentYear][currentMonth];
+            if (cur === undefined) {
+                for (; day < daysInMonth; day++ ) {
+                    console.log(day);
+                    array.push(undefined);
+                }
+                break;
+            }
+            cur = cur[day];
+            if (cur === undefined) {
+                array.push(undefined);
+            } else {
+                array.push(cur);
+            }
+        }
+        console.log(array);
+        for (; num < end; num++) {
+            let day = Number(currentDay);
+            day = day + num;
+            day = day - daysInMonth;
+            let month = Number(currentMonth);
+            month = month + 1;
+            month = String(month);
+            let cur = globalThis.temp[currentYear][month];
+            if (cur === undefined) return array;
+            cur = cur[day];
+            if (cur === undefined) {
+                array.push(undefined);
+            } else {
+                array.push(cur);
+            }
+        }
+        return array;
+    } else { //current month is December AND it's the end of december, so we gotta code stuff to account for the new year
+        var num = "";
+        for (var num = 0; num < daysInMonth; num++) {
+            let day = Number(currentDay);
+            day = day + num;
+            let cur = globalThis.temp[currentYear][currentMonth][day];
+            if (cur === undefined) {
+                array.push(undefined);
+            } else {
+                array.push(cur);
+            }
+        }
+        var year = Number(currentYear);
+        var year = year + 1;
+        for (; num < end; num++) {
+            let day = Number(currentDay);
+            day = day + num;
+            day = day - daysInMonth;
+            let month = Number(currentMonth);
+            month = month + 1;
+            month = String(month);
+            let cur = globalThis.temp[year][month];
+            if (cur === undefined) return array;
+            cur = cur[day];
+            if (cur === undefined) {
+                array.push(undefined);
+            } else {
+                array.push(cur);
+            }
+        }
+        return array;
+    }
 }
 
 function itemMove(thisElement, after, cont) {
