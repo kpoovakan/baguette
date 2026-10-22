@@ -161,8 +161,24 @@ function uiLoginSetup() {
     if (currentYear % 4 === 0) daysInMonth[1] = 29;
     const array = getDaysThisWeek(daysInMonth);
     console.log(array);
+    for (let i = 0; i < 7; i++) {
+        let current = array[i]; //the day's object of items
+        if (current === undefined) {
+            console.log(`skipping ${i}`);
+            continue;
+        }
+        let keys = Object.keys(current); //all keys for all items in this day
+        let length = keys.length; //amount of items in this day
+        console.log(current);
+        for (let i2 = 0; i2 < length; i2++) {
+            let curData = (Object.keys(current))[i2];
+            curData = current[curData];
+            console.log(curData);
+            addItem(i+1, curData);
+        }
+    }
 }
-function getDaysThisWeek(daysInMonth) {
+function getDaysThisWeek(daysInMonth) { // returns an array of the week's days and their content
     daysInMonth = daysInMonth[currentMonth];
     let end = Number(currentDay) + 6; // becuz if today is the 11th, then 11+6=17, and we display days 11-17, inclusive.
     const array = new Array(); //such a creative array name...
