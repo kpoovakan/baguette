@@ -103,7 +103,7 @@ const reference2 = `
             </div>
 `;
 
-const d = new Date("2026-12-29");
+const d = new Date();
 const currentYear = d.getFullYear().toString();
 const currentMonth = d.getMonth().toString();
 const currentDay = d.getDate().toString();
