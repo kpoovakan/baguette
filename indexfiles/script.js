@@ -160,20 +160,20 @@ function uiLoginSetup() {
     var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     if (currentYear % 4 === 0) daysInMonth[1] = 29;
     const array = getDaysThisWeek(daysInMonth);
-    console.log(array);
+    //console.log(array);
     for (let i = 0; i < 7; i++) {
         let current = array[i]; //the day's object of items
         if (current === undefined) {
-            console.log(`skipping ${i}`);
+            //console.log(`skipping ${i}`);
             continue;
         }
         let keys = Object.keys(current); //all keys for all items in this day
         let length = keys.length; //amount of items in this day
-        console.log(current);
+        //console.log(current);
         for (let i2 = 0; i2 < length; i2++) {
             let curData = (Object.keys(current))[i2];
             curData = current[curData];
-            console.log(curData);
+            //console.log(curData);
             addItem(i+1, curData);
         }
     }
