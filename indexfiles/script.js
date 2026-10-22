@@ -267,13 +267,28 @@ function itemMoveDown(thisElement) {
     itemMove(thisElement, after, parent);
 }
 async function itemComplete(thisElement) {
-    if (thisElement.src === "/indexfiles/true.svg") return;
+    if (thisElement.getAttribute("src") == "/indexfiles/true.svg") return;
+
+    var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    if (currentYear % 4 === 0) daysInMonth[1] = 29;
+    var daysInMonth = daysInMonth[currentMonth]; //days in current month
+
     const id = thisElement.parentNode.parentNode.id;
-    const item = globalThis.temp[currentYear][currentMonth][currentDay][id]["name"];
+    let day = thisElement.parentNode.parentNode.parentNode.id;
+    day = Number(day.at(-1));
+    day = (day - 1) + Number(currentDay); //day of the week and column number, not the actual day
+    day = (Number(currentDay)) + day; //now it's the actual day
+
+    if (day > daysInMonth) { //this item is part of next month
+        //code for next month checkoff
+        //don't forget to check if this month is December and next month is also next year
+        return;
+    }
+    const item = globalThis.temp[currentYear][currentMonth][day][id]["name"];
     const confirm = window.confirm(`You are about to mark ${item} as complete. Press cancel if ${item} has not been completed.`);
     if (!confirm) return;
     thisElement.src = "/indexfiles/true.svg";
-    globalThis.temp[currentYear][currentMonth][currentDay][id]["check"] = true;
+    globalThis.temp[currentYear][currentMonth][day][id]["check"] = true;
     var json = JSON.stringify(globalThis.temp);
     window.localStorage.setItem("temp", json);
     console.log(json);
