@@ -274,21 +274,35 @@ async function itemComplete(thisElement) {
     var daysInMonth = daysInMonth[currentMonth]; //days in current month
 
     const id = thisElement.parentNode.parentNode.id;
-    let day = thisElement.parentNode.parentNode.parentNode.id;
-    day = Number(day.at(-1));
-    day = (day - 1) + Number(currentDay); //day of the week and column number, not the actual day
-    day = (Number(currentDay)) + day; //now it's the actual day
+    var day = thisElement.parentNode.parentNode.parentNode.id;
+    var day = day.toString();
+    var day = day.at(-1);
+    var day = Number(day); //day of the week and column number, not the actual day
+    var day = (day - 1) + Number(currentDay); //now it's the actual day
 
     if (day > daysInMonth) { //this item is part of next month
-        //code for next month checkoff
-        //don't forget to check if this month is December and next month is also next year
-        return;
+        var month = Number(currentMonth);
+        var month = month + 1;
+        var month = month.toString();
+        if (currentMonth === "11") { //next month is next year
+            var year = Number(currentYear);
+            var year = year + 1;
+            var year = year.toString();
+        } else {
+            var year = currentYear;
+        }
+        var day = day - daysInMonth;
+    } else {
+        var month = currentMonth;
+        var year = currentYear;
     }
-    const item = globalThis.temp[currentYear][currentMonth][day][id]["name"];
+    var day = day.toString();
+    //console.log(year);console.log(month);console.log(day);
+    const item = globalThis.temp[year][month][day][id]["name"];
     const confirm = window.confirm(`You are about to mark ${item} as complete. Press cancel if ${item} has not been completed.`);
     if (!confirm) return;
     thisElement.src = "/indexfiles/true.svg";
-    globalThis.temp[currentYear][currentMonth][day][id]["check"] = true;
+    globalThis.temp[year][month][day][id]["check"] = true;
     var json = JSON.stringify(globalThis.temp);
     window.localStorage.setItem("temp", json);
     console.log(json);
