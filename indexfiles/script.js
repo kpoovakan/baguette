@@ -103,7 +103,7 @@ const reference2 = `
             </div>
 `;
 
-const d = new Date("2026-11-29");
+const d = new Date("2026-12-29");
 const currentYear = d.getFullYear().toString();
 const currentMonth = d.getMonth().toString();
 const currentDay = d.getDate().toString();
@@ -181,9 +181,10 @@ function getDaysThisWeek(daysInMonth) {
             }
         }
         return array;
-    } else if (!(currentMonth === 11)) { //if current month isn't December
+    } else { //oh no, this week includes two months!
         const firstMonth = daysInMonth - currentDay; //days in first month that will be "fetched"
         const secondMonth = end - daysInMonth + 1; //days in second month that will be "fetched"
+        //this sets up data for the first month
         for (let i = 0; i < firstMonth; i++) {
             let day = Number(currentDay);
             day = day + i; //the day being tracked for this i
@@ -199,12 +200,22 @@ function getDaysThisWeek(daysInMonth) {
                 array.push(cur);
             }
         }
+        //ok, now we must check if the next month is January and change the year
+        if (currentMonth === "11") {
+            var newYear = (Number(currentYear)) + 1;
+        } else {
+            var newYear = currentYear;
+        }
+        if (newYear === currentYear) {
+            var month = (Number(currentMonth)) + 1;
+        } else {
+            var month = 0;
+        }
+        //this sets up data for the second month
         for (let i = 0; i < secondMonth; i++) {
             //so here, you would get the first day, then the second, then the third, and keep going, until you get the secondMonth variable's day, then you stop. like.. get the i+1 day?
             let day = i + 1;
-            let month = Number(currentMonth);
-            month = month + 1;
-            let cur = globalThis.temp[currentYear][month];
+            let cur = globalThis.temp[newYear][month];
             if (cur === undefined) {
                 array.push(undefined);
                 continue;
@@ -217,8 +228,6 @@ function getDaysThisWeek(daysInMonth) {
             }
         }
         return array; //I hope this works...
-    } else { //current month is December AND it's the end of December, so we gotta code stuff to account for the new year
-        return undefined;
     }
 }
 
