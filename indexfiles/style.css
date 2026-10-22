@@ -155,7 +155,8 @@ button:hover {
     margin: 0;
     padding: 0;
     align-items: stretch;
-    flex: 1;
+    flex: 1 1 0;
+    min-width: 0;
 }
 /* https://coolors.co/ff33dd-bf96ca-8bd5cd-ffd000-98c28a-140094-d30000-ff7700
 fuschia, purple, teal, yellow, green, blue, red, orange */
@@ -166,6 +167,7 @@ fuschia, purple, teal, yellow, green, blue, red, orange */
     border-radius: 3px;
     margin: 0;
     flex: 0 1 0;
+    min-width: 0;
     display: flex;
     flex-direction: row;
     --color: #98c28a;
@@ -207,6 +209,8 @@ fuschia, purple, teal, yellow, green, blue, red, orange */
 .dayInfo p {
     margin: 0;
     margin-bottom: 3px;
+    font-size: min(1.0314cqw, 1.1rem);
+    flex: 1 1 0;
 }
 .str {
     font-weight: 600;
