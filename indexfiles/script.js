@@ -385,4 +385,10 @@ function addItem(column, data) {
     thisItem.appendChild(dayBar);
     thisItem.appendChild(dayInfo);
     clmn.appendChild(thisItem);
+
+    if (data.check === true) {
+        var color = window.getComputedStyle(thisItem);
+        var color = color.getPropertyValue("--color");
+        thisItem.style.setProperty("--color", `color-mix(in oklab, #00000000 50%, ${color})`)
+    }
 }
