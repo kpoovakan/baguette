@@ -66,8 +66,9 @@ const contentLoggedIn = `
         </div>
         <select id="paid" autocomplete="off">
             <option value="default" disabled selected hidden>payment status</option>
-            <option value="true">item is paid</option>
-            <option value="false">item is unpaid</option>
+            <option value="true">item was paid</option>
+            <option value="false">item is unpaid and will be paid</option>
+            <option value="true">item is free and marked as paid on Baguette dashboard</option>
         </select>
         <select id="stage" autocomplete="off">
             <option value="default" disabled selected hidden>stage of production</option>
