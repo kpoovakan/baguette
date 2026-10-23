@@ -101,8 +101,8 @@ const contentLoggedIn = `
         </select>
         <textarea id="other" placeholder="additional notes..." autocomplete="off"></textarea>
         <div class="addItemFlex">
-            <button onclick="addItem()">add item to Baguette</button>
-            <button onclick="itemAddClose()">cancel changes</button>
+            <button onclick="itemAddPressed()" style="flex: 2;">add item to Baguette</button>
+            <button onclick="itemAddClose()" style="flex: 1;">cancel changes</button>
         </div>
     </dialog>
 `;
@@ -443,9 +443,12 @@ function addItem(column, data) { //actually adds the items
     }
 }
 
-function itemAddOpen() { //the script that runs when the button is pressed and later calls addItem
+function itemAddOpen() { //opens itemAdd dialog
     document.getElementById("itemAdd").showModal();
 }
-function itemAddClose() {
+function itemAddClose() { //closes itemAdd dialog
     document.getElementById("itemAdd").close();
+}
+function itemAddPressed() { //grabs data from itemAdd dialog then runs addItem()
+    //idk yet
 }
