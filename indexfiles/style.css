@@ -239,18 +239,18 @@ input {
     font-size: 1.1rem;
     border-radius: 3px;
     padding: 3px;
-    border: 2px solid var(--colorAccent);
+    border: 1px solid var(--colorAccent);
     box-sizing: border-box;
 }
 input:focus {
     outline: none;
-    border: 2px dashed var(--colorAccent);
+    border: 1px dashed var(--colorAccent);
 }
 select {
     background-color: var(--colorBackground);
     color: var(--colorForeground);
     border-radius: 3px;
-    border: 2px solid var(--colorAccent);
+    border: 1px solid var(--colorAccent);
     font-family: inherit;
     font-size: 1.1rem;
     border-radius: 3px;
@@ -258,14 +258,14 @@ select {
 }
 select:focus {
     outline: none;
-    border: 2px dashed var(--colorAccent);
+    border: 1px dashed var(--colorAccent);
 }
 option {
     font-family: "Radio Canada", sans-serif;
     padding: 3px;
     background-color: var(--colorBackground);
     color: var(--colorForeground);
-    border: 2px solid var(--colorAccent);
+    border: 1px solid var(--colorAccent);
     border-radius: 3px;
     font-size: 1.1rem;
 }
@@ -275,12 +275,12 @@ textarea {
     font-family: inherit;
     font-size: 1.1rem;
     border-radius: 3px;
-    border: 2px solid var(--colorAccent);
+    border: 1px solid var(--colorAccent);
     padding: 3px;
 }
 textarea:focus {
     outline: none;
-    border: 2px dashed var(--colorAccent);
+    border: 1px dashed var(--colorAccent);
 }
 .addItem > * {
     margin: 3%;
