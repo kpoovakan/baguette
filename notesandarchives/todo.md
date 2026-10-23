@@ -12,6 +12,7 @@ Pretty self-explanatory...
 - [ ] Connecting localStorage to cloud
 - [ ] Allowing items to be checked off
 - [ ] Editing previously created items
+- [ ] Add day of the week (Minggu, Senin, Selasa...) to top of columns
 
 
 ## Do This Sometime Within The Next 314 Years
