@@ -57,7 +57,7 @@ const contentLoggedIn = `
     </div>
 
     <dialog id="itemAdd" class="addItem">
-        <p class="str" style="margin: 0;">add item to Baguette</p>
+        <p class="str">add item to Baguette</p>
         <input id="name" type="text" placeholder="item name" autocomplete="off" autofocus>
         <input id="customer" type="text" placeholder="customer name" autocomplete="off">
         <div class="addItemFlex">

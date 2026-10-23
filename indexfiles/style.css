@@ -283,11 +283,14 @@ textarea:focus {
     border: 1px dashed var(--colorAccent);
 }
 .addItem > * {
-    margin: 3%;
+    margin: 1.5% 3%;
     display: block;
     box-sizing: border-box;
     width: 94%;
 
+}
+.addItem > p {
+    margin: inherit;
 }
 .addItem > textarea {
     resize: vertical;
