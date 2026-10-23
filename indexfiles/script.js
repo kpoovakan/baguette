@@ -56,12 +56,14 @@ const contentLoggedIn = `
         <div class="dayColumn" id="day7"></div>
     </div>
 
-    <dialog id="itemAdd">
+    <dialog id="itemAdd" class="addItem">
         <p class="str" style="margin: 0;">add item to Baguette</p>
         <input id="name" type="text" placeholder="item name" autocomplete="off" autofocus>
         <input id="customer" type="text" placeholder="customer name" autocomplete="off">
-        <input id="time" type="time" step="60" autocomplete="off">
-        <input id="date" type="date" autocomplete="off">
+        <div class="addItemFlex">
+            <input id="time" type="time" step="60" autocomplete="off">
+            <input id="date" type="date" autocomplete="off">
+        </div>
         <select id="paid" autocomplete="off">
             <option value="default" disabled selected hidden>payment status</option>
             <option value="true">item is paid</option>
@@ -78,7 +80,7 @@ const contentLoggedIn = `
             <option value="cool and decorate">cool and decorate</option>
             <option value="packaging">packaging</option>
             <option value="sourdough general prep">sourdough general prep</option>
-            <option value="sourdough levain">sourdough levain</option>
+            <option value="sourdough levain">I sourdough levain</option>
             <option value="sourdough autolyse">sourdough autolyse</option>
             <option value="sourdough stretch and fold">sourdough stretch and fold</option>
             <option value="sourdough fermentation">sourdough fermentation</option>
@@ -97,7 +99,7 @@ const contentLoggedIn = `
             <option value="pink">bright fuschia pink</option>
             <option value="orange">orange for the oven</option>
         </select>
-        <input id="other" type="text" placeholder="additional notes..." autocomplete="off">
+        <textarea id="other" placeholder="additional notes..." autocomplete="off"></textarea>
 
     </dialog>
 `;

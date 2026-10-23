@@ -232,3 +232,71 @@ dialog::backdrop {
     background-color: color-mix(in oklab, #00000000 75%, var(--colorAccent));
     backdrop-filter: blur(3px);
 }
+input {
+    background-color: var(--colorBackground);
+    color: var(--colorForeground);
+    font-family: inherit;
+    font-size: 1.1rem;
+    border-radius: 3px;
+    padding: 3px;
+    border: 2px solid var(--colorAccent);
+    box-sizing: border-box;
+}
+input:focus {
+    outline: none;
+    border: 2px dashed var(--colorAccent);
+}
+select {
+    background-color: var(--colorBackground);
+    color: var(--colorForeground);
+    border-radius: 3px;
+    border: 2px solid var(--colorAccent);
+    font-family: inherit;
+    font-size: 1.1rem;
+    border-radius: 3px;
+    padding: 3px;
+}
+select:focus {
+    outline: none;
+    border: 2px dashed var(--colorAccent);
+}
+option {
+    font-family: "Radio Canada", sans-serif;
+    padding: 3px;
+    background-color: var(--colorBackground);
+    color: var(--colorForeground);
+    border: 2px solid var(--colorAccent);
+    border-radius: 3px;
+    font-size: 1.1rem;
+}
+textarea {
+    background-color: var(--colorBackground);
+    color: var(--colorForeground);
+    font-family: inherit;
+    font-size: 1.1rem;
+    border-radius: 3px;
+    border: 2px solid var(--colorAccent);
+    padding: 3px;
+}
+textarea:focus {
+    outline: none;
+    border: 2px dashed var(--colorAccent);
+}
+.addItem > * {
+    margin: 3%;
+    display: block;
+    box-sizing: border-box;
+    width: 94%;
+
+}
+.addItem > textarea {
+    resize: vertical;
+}
+.addItemFlex {
+    display: flex;
+    gap: 3%;
+    box-sizing: border-box;
+}
+.addItemFlex > * {
+    flex: 1;
+}
