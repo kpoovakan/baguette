@@ -55,6 +55,12 @@ const contentLoggedIn = `
         <div class="dayColumn" id="day6"></div>
         <div class="dayColumn" id="day7"></div>
     </div>
+
+    <dialog id="itemAdd">
+        <p class="str" style="margin: 0;">add item to Baguette</p>
+        <input id="name" type="text" placeholder="bolo baos" autocomplete="off" autofocus>
+        <input id="customer" type="text" placeholder="madamoiselle baguette" autocomplete="off">
+    </dialog>
 `;
 const reference1 = `
 <div class="dayContainer">
@@ -311,7 +317,7 @@ async function itemComplete(thisElement) {
     document.getElementById(id).style.setProperty("--color", `color-mix(in oklab, #00000000 50%, ${color})`)
 }
 
-function addItem(column, data) {
+function addItem(column, data) { //actually adds the items
     const colors = {
         pink:"#ff33dd",
         purple:"#bf96ca",
@@ -391,4 +397,8 @@ function addItem(column, data) {
         var color = color.getPropertyValue("--color");
         thisItem.style.setProperty("--color", `color-mix(in oklab, #00000000 50%, ${color})`)
     }
+}
+
+function itemAdd() { //the script that runs when the button is pressed and later calls addItem
+    document.getElementById("itemAdd").showModal();
 }
