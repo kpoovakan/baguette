@@ -44,7 +44,7 @@ const contentLoggedIn = `
         <a href="javascript:void(0);">settings</a>⠀⠀⠀
         <a href="javascript:void(0);" onclick="clouddataLogout()">logout</a>
     </p>
-    <button class="svgAddNew" onclick="itemAdd()">${svgAddNew}</button>
+    <button class="svgAddNew" onclick="itemAddOpen()">${svgAddNew}</button>
 
     <div class="dayContainer">
         <div class="dayColumn" id="day1"></div>
@@ -100,7 +100,10 @@ const contentLoggedIn = `
             <option value="orange">orange for the oven</option>
         </select>
         <textarea id="other" placeholder="additional notes..." autocomplete="off"></textarea>
-
+        <div class="addItemFlex">
+            <button onclick="addItem()">add item to Baguette</button>
+            <button onclick="itemAddClose()">cancel changes</button>
+        </div>
     </dialog>
 `;
 const reference1 = `
@@ -440,6 +443,9 @@ function addItem(column, data) { //actually adds the items
     }
 }
 
-function itemAdd() { //the script that runs when the button is pressed and later calls addItem
+function itemAddOpen() { //the script that runs when the button is pressed and later calls addItem
     document.getElementById("itemAdd").showModal();
+}
+function itemAddClose() {
+    document.getElementById("itemAdd").close();
 }
