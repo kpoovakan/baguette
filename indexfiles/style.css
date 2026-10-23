@@ -215,3 +215,20 @@ fuschia, purple, teal, yellow, green, blue, red, orange */
 .str {
     font-weight: 600;
 }
+
+dialog {
+    background-color: var(--colorBackground);
+    color: var(--colorForeground);
+    font-family: inherit;
+    font-size: 1.1rem;
+    outline: none;
+    border: 3px solid var(--colorAccent);
+    border-radius: 3px;
+    width: 90vw;
+    height: 85vh;
+    padding: 13px;
+}
+dialog::backdrop {
+    background-color: color-mix(in oklab, #00000000 75%, var(--colorAccent));
+    backdrop-filter: blur(3px);
+}
