@@ -58,8 +58,47 @@ const contentLoggedIn = `
 
     <dialog id="itemAdd">
         <p class="str" style="margin: 0;">add item to Baguette</p>
-        <input id="name" type="text" placeholder="bolo baos" autocomplete="off" autofocus>
-        <input id="customer" type="text" placeholder="madamoiselle baguette" autocomplete="off">
+        <input id="name" type="text" placeholder="item name" autocomplete="off" autofocus>
+        <input id="customer" type="text" placeholder="customer name" autocomplete="off">
+        <input id="time" type="time" step="60" autocomplete="off">
+        <input id="date" type="date" autocomplete="off">
+        <select id="paid" autocomplete="off">
+            <option value="default" disabled selected hidden>payment status</option>
+            <option value="true">item is paid</option>
+            <option value="false">item is unpaid</option>
+        </select>
+        <select id="stage" autocomplete="off">
+            <option value="default" disabled selected hidden>stage of production</option>
+            <option value="make and bake">make and bake</option>
+            <option value="make">make</option>
+            <option value="make and chill">make and chill</option>
+            <option value="preheat oven">preheat oven</option>
+            <option value="bake">bake</option>
+            <option value="leave to cool">leave to cool</option>
+            <option value="cool and decorate">cool and decorate</option>
+            <option value="packaging">packaging</option>
+            <option value="sourdough general prep">sourdough general prep</option>
+            <option value="sourdough levain">sourdough levain</option>
+            <option value="sourdough autolyse">sourdough autolyse</option>
+            <option value="sourdough stretch and fold">sourdough stretch and fold</option>
+            <option value="sourdough fermentation">sourdough fermentation</option>
+            <option value="sourdough shape or proof">sourdough shape or proof</option>
+            <option value="add poison">add poison</option>
+            <option value="custom">custom...</option>
+        </select>
+        <select id="color" autocomplete="off">
+            <option value="default" disabled selected hidden>item color-coding</option>
+            <option value="yellow">sunshine yellow</option>
+            <option value="green">green</option>
+            <option value="teal">teal</option>
+            <option value="purple">lavender purple</option>
+            <option value="blue">blue</option>
+            <option value="red">red</option>
+            <option value="pink">bright fuschia pink</option>
+            <option value="orange">orange for the oven</option>
+        </select>
+        <input id="other" type="text" placeholder="additional notes..." autocomplete="off">
+
     </dialog>
 `;
 const reference1 = `
