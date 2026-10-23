@@ -2,7 +2,7 @@
 Pretty self-explanatory...
 
 ## Do This Now
-- [ ] Displaying localStorage.temp
+- [x] Displaying localStorage.temp
 - [ ] Button that can add items to days
 - [ ] Saving things to localStorage
 - [ ] Finishing unfinished buttons in navbar
