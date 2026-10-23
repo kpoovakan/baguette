@@ -369,7 +369,7 @@ function addItem(column, data) { //actually adds the items
         paid.innerText = "unpaid";
     }
     next.appendChild(customer);
-    next.innerHTML = next.innerHTML + "⠀⠀⠀";
+    next.innerHTML = next.innerHTML + "<br>";
     next.appendChild(paid);
     const delivery = document.createElement("p");
     delivery.className = "str";
