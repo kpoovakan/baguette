@@ -457,11 +457,21 @@ function itemAddPressed() { //grabs data from itemAdd dialog then runs addItem()
     const customer = value("customer");
     const time = value("time");
     const date = value("date");
-    const paid = JSON.parse( value("paid") );
+    var paid = value("paid");
     const stage = value("stage");
     const color = value("color");
     const other = value("other");
+    //check for empty values
+    const focus = (id) => document.getElementById(id).focus();
+    if (name === "") { focus("name"); alert("please add item name"); return; };
+    if (customer === "") { focus("customer"); alert("please add customer name"); return; };
+    if (time === "") { focus("time"); alert("please add item time"); return; };
+    if (date === "") { focus("date"); alert("please add item due date"); return; };
+    if (paid === "default") { focus("paid"); alert("please add item payment status"); return; };
+    if (stage === "default") { focus("stage"); alert("please add item production stage"); return; };
+    if (color === "default") { focus("color"); alert("please add item color-coding"); return; };
     //convert some data into the format required
+    var paid = JSON.parse(paid);
     var hour = time.at(0).toString() + time.at(1).toString();
     if ((hour - 12) > 0) {
         var hour = hour - 12;
@@ -481,4 +491,17 @@ function itemAddPressed() { //grabs data from itemAdd dialog then runs addItem()
     }
     console.log(`this item's id is: ${itemId}`);
     var object = {};
+    object.name = name;
+    object.customer = customer;
+    object.hour = hour;
+    object.minute = minute;
+    object.clock = clock;
+    object.month = month;
+    object.day = day;
+    object.paid = paid;
+    object.stage = stage;
+    object.check = false; //becuz if you're adding the item it shouldn't be completed yet
+    object.color = color;
+    object.other = other;
+    object.id = itemId;
 }
