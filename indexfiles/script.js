@@ -451,5 +451,34 @@ function itemAddClose() { //closes itemAdd dialog
     document.getElementById("itemAdd").close();
 }
 function itemAddPressed() { //grabs data from itemAdd dialog then runs addItem()
-    //idk yet
+    //grab data from the dialog
+    const value = (id) => document.getElementById(id).value;
+    const name = value("name");
+    const customer = value("customer");
+    const time = value("time");
+    const date = value("date");
+    const paid = JSON.parse( value("paid") );
+    const stage = value("stage");
+    const color = value("color");
+    const other = value("other");
+    //convert some data into the format required
+    var hour = time.at(0).toString() + time.at(1).toString();
+    if ((hour - 12) > 0) {
+        var hour = hour - 12;
+        var clock = "pm";
+    } else var clock = "am";
+    var hour = Number(hour);
+    const minute = Number( time.at(3).toString() + time.at(4).toString() );
+    const year = date.at(0).toString() + date.at(1).toString() + date.at(2).toString() + date.at(3).toString();
+    const month = String(Number( date.at(5).toString() + date.at(6).toString() ));
+    const day = String(Number( date.at(8).toString() + date.at(9).toString() ));
+    //convert data into a JSON object
+    var itemId = Math.random().toString(36).substring(2);
+    let temp = globalThis.temp;
+    temp = JSON.stringify(temp);
+    while (temp.includes(itemId) || itemId === 0 || itemId === "0") {
+        var itemId = Math.random().toString(36).substring(2);
+    }
+    console.log(`this item's id is: ${itemId}`);
+    var object = {};
 }
