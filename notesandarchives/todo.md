@@ -15,6 +15,7 @@ Pretty self-explanatory...
 - [ ] Allowing items to be checked off
 - [ ] Editing previously created items
 - [ ] Add day of the week (Minggu, Senin, Selasa...) to top of columns
+- [ ] Add an alert to frontend to warn and disable using the word "constructor" anywhere in Baguette user input
 
 
 ## Do This Sometime Within The Next 314 Years
