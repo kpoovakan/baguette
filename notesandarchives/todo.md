@@ -18,7 +18,7 @@ Pretty self-explanatory...
 - [ ] In function for adding items to days, make it also automatically add the item to the dashboard without having to reload the page
 - [ ] Saving an item's position in its column to localStorage and to the cloud
 - [ ] Some way to move items from one day to another (one column to another)
-- [ ] In function for adding items to days, write code for custom "production stages"
+- [ ] In function for adding items to days, write code for custom "production stages" (option is currently in dropdown but commented out, uncomment it and add onclick to parent element)
 
 
 ## Do This Sometime Within The Next 314 Years
