@@ -5,7 +5,6 @@ Pretty self-explanatory...
 - [x] Displaying localStorage.temp
 - [x] Button that can add items to days
 - [x] In function for adding items to days, somehow configure the date where the item is added to the dashboard versus the date the item will be delivered to customer
-- [ ] In function for adding items to days, write code for custom "production stages"
 - [x] Saving things to localStorage
 - [x] Finishing unfinished buttons in navbar
 - [ ] Separate pre-release page without cloud features
@@ -19,6 +18,7 @@ Pretty self-explanatory...
 - [ ] In function for adding items to days, make it also automatically add the item to the dashboard without having to reload the page
 - [ ] Saving an item's position in its column to localStorage and to the cloud
 - [ ] Some way to move items from one day to another (one column to another)
+- [ ] In function for adding items to days, write code for custom "production stages"
 
 
 ## Do This Sometime Within The Next 314 Years
