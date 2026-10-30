@@ -92,7 +92,7 @@ const contentLoggedIn = `
             <option value="sourdough fermentation">sourdough fermentation</option>
             <option value="sourdough shape or proof">sourdough shape or proof</option>
             <option value="add poison">add poison</option>
-            <option value="custom">custom...</option>
+            <!--<option value="custom">custom...</option>-->
         </select>
         <select id="color" autocomplete="off">
             <option value="default" disabled selected hidden>item color-coding</option>
