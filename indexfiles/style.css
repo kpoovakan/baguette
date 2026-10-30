@@ -300,6 +300,12 @@ textarea:focus {
     gap: 3%;
     box-sizing: border-box;
 }
-.addItemFlex > * {
+.addItemFlex p {
+    margin: 0;
+    padding: inherit;
     flex: 1;
+    flex-shrink: 3.14;
+}
+.addItemFlex > * {
+    flex: 2;
 }
