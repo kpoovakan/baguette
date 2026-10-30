@@ -428,7 +428,7 @@ function addItem(column, data) { //actually adds the items
     delivery.innerText = `Delivery ${data.hour}\:${data.minute} ${data.clock.toUpperCase()} on ${data.month}/${data.day}`;
     const stage = document.createElement("p");
     stage.innerText = data.stage;
-    if (!data.other == "" && !data.other == null && !data.other == undefined) {
+    if ((!(data.other == "")) && (!(data.other == null)) && (!(data.other == undefined))) {
         var other = document.createElement("p");
         other.innerText = data.other;
         other.className = "str";
