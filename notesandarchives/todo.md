@@ -18,11 +18,11 @@ Pretty self-explanatory...
 - [ ] Add an alert to frontend to warn and disable using the word "constructor" anywhere in Baguette user input
 - [ ] In function for adding items to days, make it also automatically add the item to the dashboard without having to reload the page
 - [ ] Saving an item's position in its column to localStorage and to the cloud
+- [ ] Some way to move items from one day to another (one column to another)
 
 
 ## Do This Sometime Within The Next 314 Years
 - [ ] Button to request data deletion
 - [ ] Some way to contact developer
 - [ ] Meta tags for description, gsc, responsiveness, and language, then remove the noindex
-- [ ] Some way to move items from one day to another (one column to another)
 - [ ] Uncommentout and add settings option (in navbar)
