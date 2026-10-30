@@ -3,10 +3,10 @@ Pretty self-explanatory...
 
 ## Do This Now
 - [x] Displaying localStorage.temp
-- [ ] Button that can add items to days
-- [ ] In function for adding items to days, somehow configure the date where the item is added to the dashboard versus the date the item will be delivered to customer
+- [x] Button that can add items to days
+- [x] In function for adding items to days, somehow configure the date where the item is added to the dashboard versus the date the item will be delivered to customer
 - [ ] In function for adding items to days, write code for custom "production stages"
-- [ ] Saving things to localStorage
+- [x] Saving things to localStorage
 - [ ] Finishing unfinished buttons in navbar
 - [ ] Separate pre-release page without cloud features
 
@@ -16,6 +16,7 @@ Pretty self-explanatory...
 - [ ] Editing previously created items
 - [ ] Add day of the week (Minggu, Senin, Selasa...) to top of columns
 - [ ] Add an alert to frontend to warn and disable using the word "constructor" anywhere in Baguette user input
+- [ ] In function for adding items to days, make it also automatically add the item to the dashboard without having to reload the page
 
 
 ## Do This Sometime Within The Next 314 Years
