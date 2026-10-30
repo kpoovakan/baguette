@@ -86,7 +86,7 @@ const contentLoggedIn = `
             <option value="cool and decorate">cool and decorate</option>
             <option value="packaging">packaging</option>
             <option value="sourdough general prep">sourdough general prep</option>
-            <option value="sourdough levain">I sourdough levain</option>
+            <option value="sourdough levain">sourdough levain</option>
             <option value="sourdough autolyse">sourdough autolyse</option>
             <option value="sourdough stretch and fold">sourdough stretch and fold</option>
             <option value="sourdough fermentation">sourdough fermentation</option>
@@ -168,6 +168,7 @@ window.addEventListener("load", function() {
     if (!window.localStorage.getItem("temp")) {
         document.getElementById("contentMain").innerHTML = contentLoggedOut;
         document.getElementById("contentMain").style.width = "70vw";
+        globalThis.temp = {};
     } else {
         if (window.location.href === "https://baguette.katanya.dev") {
             clouddataLogin();
@@ -254,8 +255,9 @@ function getDaysThisWeek(daysInMonth) { // returns an array of the week's days a
         }
         return array;
     } else { //oh no, this week includes two months!
-        const firstMonth = daysInMonth - currentDay; //days in first month that will be "fetched"
+        const firstMonth = (daysInMonth - currentDay) + 1; //days in first month that will be "fetched"
         const secondMonth = end - daysInMonth + 1; //days in second month that will be "fetched"
+        //console.log(firstMonth);console.log(secondMonth);
         //this sets up data for the first month
         for (let i = 0; i < firstMonth; i++) {
             let day = Number(currentDay);
@@ -466,15 +468,17 @@ function itemAddPressed() { //grabs data from itemAdd dialog then runs addItem()
     const stage = value("stage");
     const color = value("color");
     const other = value("other");
+    const task = value("task");
     //check for empty values
     const focus = (id) => document.getElementById(id).focus();
     if (name === "") { focus("name"); alert("please add item name"); return; };
     if (customer === "") { focus("customer"); alert("please add customer name"); return; };
-    if (time === "") { focus("time"); alert("please add item time"); return; };
+    if (time === "") { focus("time"); alert("please add item delivery time"); return; };
     if (date === "") { focus("date"); alert("please add item due date"); return; };
     if (paid === "default") { focus("paid"); alert("please add item payment status"); return; };
     if (stage === "default") { focus("stage"); alert("please add item production stage"); return; };
     if (color === "default") { focus("color"); alert("please add item color-coding"); return; };
+    if (task === "") { focus("task"); alert("please add item position on dashboard"); return; }
     //convert some data into the format required
     var paid = JSON.parse(paid);
     var hour = time.at(0).toString() + time.at(1).toString();
@@ -491,8 +495,10 @@ function itemAddPressed() { //grabs data from itemAdd dialog then runs addItem()
     var itemId = Math.random().toString(36).substring(2);
     let temp = globalThis.temp;
     temp = JSON.stringify(temp);
-    while (temp.includes(itemId) || itemId === 0 || itemId === "0") {
-        var itemId = Math.random().toString(36).substring(2);
+    if (!(temp === undefined)) {
+            while (temp.includes(itemId) || itemId === 0 || itemId === "0") {
+            var itemId = Math.random().toString(36).substring(2);
+        }
     }
     console.groupCollapsed(`logs for item ${itemId}`);
     console.log(`this item's id is: ${itemId}`);
@@ -511,5 +517,23 @@ function itemAddPressed() { //grabs data from itemAdd dialog then runs addItem()
     object.other = other;
     object.id = itemId;
     console.log(object);
+    //figger out where on the dashboard this item goes
+    const taskYear = task.at(0).toString() + task.at(1).toString() + task.at(2).toString() + task.at(3).toString();
+    var taskMonth = Number( task.at(5).toString() + task.at(6).toString() );
+    var taskMonth = taskMonth - 1; //becuz months are zero-indexed
+    var taskMonth = String(taskMonth);
+    const taskDay = String(Number( task.at(8).toString() + task.at(9).toString() ));
+    console.group(`item position on dashboard:`);
+    console.log(taskYear);
+    console.log(taskMonth);
+    console.log(taskDay);
     console.groupEnd();
+    console.groupEnd();
+    //add item to dashboard and globalThis.temp
+    globalThis.temp[taskYear] = globalThis.temp[taskYear] || {};
+    globalThis.temp[taskYear][taskMonth] = globalThis.temp[taskYear][taskMonth] || {};
+    globalThis.temp[taskYear][taskMonth][taskDay] = globalThis.temp[taskYear][taskMonth][taskDay] || {};
+    globalThis.temp[taskYear][taskMonth][taskDay][itemId] = object;
+    window.localStorage.setItem("temp", JSON.stringify(globalThis.temp));
+    window.location.reload();
 }
