@@ -38,3 +38,6 @@ All code has been built by [kpoovakan](https://kpoovakan.github.io); no librarie
 * Baguette was inspired by a piece of paper on a friend's fridge
 * The digits of pi were often used in the testing of Baguette
 * The frontend of [Demo v1](demo/v1) took 20 hours to build
+
+## Future Updates
+Baguette will receive updates, maintenance, and new features in the future. Check out the [to-do list](indexfiles/todo.md), or visit Baguette's [homepage](https://baguette.katanya.dev) for an exclusive preview of Baguette's future!
