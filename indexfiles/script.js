@@ -61,9 +61,13 @@ const contentLoggedIn = `
         <input id="name" type="text" placeholder="item name" autocomplete="off" autofocus>
         <input id="customer" type="text" placeholder="customer name" autocomplete="off">
         <div class="addItemFlex">
-            <p>time and date of item delivery</p>
+            <p>time and date for item <i>delivery</i></p>
             <input id="time" type="time" step="60" autocomplete="off">
             <input id="date" type="date" autocomplete="off">
+        </div>
+        <div class="addItemFlex">
+            <p>date for this task's <i>location on dashboard</i></p>
+            <input id="task" type="date" autocomplete="off">
         </div>
         <select id="paid" autocomplete="off">
             <option value="default" disabled selected hidden>payment status</option>
