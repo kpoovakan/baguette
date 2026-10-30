@@ -7,7 +7,7 @@ Pretty self-explanatory...
 - [x] In function for adding items to days, somehow configure the date where the item is added to the dashboard versus the date the item will be delivered to customer
 - [ ] In function for adding items to days, write code for custom "production stages"
 - [x] Saving things to localStorage
-- [ ] Finishing unfinished buttons in navbar
+- [x] Finishing unfinished buttons in navbar
 - [ ] Separate pre-release page without cloud features
 
 ## Do This Later
@@ -25,3 +25,4 @@ Pretty self-explanatory...
 - [ ] Some way to contact developer
 - [ ] Meta tags for description, gsc, responsiveness, and language, then remove the noindex
 - [ ] Some way to move items from one day to another (one column to another)
+- [ ] Uncommentout and add settings option (in navbar)
