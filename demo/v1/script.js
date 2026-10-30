@@ -167,7 +167,6 @@ const currentDay = d.getDate().toString();
 window.addEventListener("load", function() {
     if (!window.localStorage.getItem("temp")) {
         document.getElementById("contentMain").innerHTML = contentLoggedIn;
-        document.getElementById("contentMain").style.width = "70vw";
         globalThis.temp = {};
     } else {
         globalThis.temp = window.localStorage.getItem("temp");
