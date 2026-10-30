@@ -490,19 +490,22 @@ function itemAddPressed() { //grabs data from itemAdd dialog then runs addItem()
     while (temp.includes(itemId) || itemId === 0 || itemId === "0") {
         var itemId = Math.random().toString(36).substring(2);
     }
+    console.groupCollapsed(`logs for item ${itemId}`);
     console.log(`this item's id is: ${itemId}`);
-    var object = {};
+    var object = {}; //yupperpoodles, such a creative object name
     object.name = name;
     object.customer = customer;
-    object.hour = hour;
-    object.minute = minute;
+    object.hour = Number(hour);
+    object.minute = Number(minute);
     object.clock = clock;
-    object.month = month;
-    object.day = day;
+    object.month = Number(month);
+    object.day = Number(day);
     object.paid = paid;
     object.stage = stage;
     object.check = false; //becuz if you're adding the item it shouldn't be completed yet
     object.color = color;
     object.other = other;
     object.id = itemId;
+    console.log(object);
+    console.groupEnd();
 }
