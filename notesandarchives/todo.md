@@ -7,7 +7,7 @@ Pretty self-explanatory...
 - [x] In function for adding items to days, somehow configure the date where the item is added to the dashboard versus the date the item will be delivered to customer
 - [x] Saving things to localStorage
 - [x] Finishing unfinished buttons in navbar
-- [ ] Separate pre-release page without cloud features
+- [x] Separate pre-release page without cloud features
 
 ## Do This Later
 - [ ] Connecting localStorage to cloud
