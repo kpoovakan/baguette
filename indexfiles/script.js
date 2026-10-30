@@ -41,7 +41,7 @@ const contentLoggedIn = `
     <p class="header">
         <a href="javascript:void(0);" id="saveNowButton" style="pointer-events: none; color: color-mix(in oklab, #00000000 50%, var(--colorForeground))">cloud sync</a>⠀⠀⠀
         <a href="https://github.com/kpoovakan/baguette/blob/main/README.md">docs</a>⠀⠀⠀
-        <a href="javascript:void(0);">settings</a>⠀⠀⠀
+        <!--<a href="javascript:void(0);">settings</a>⠀⠀⠀-->
         <a href="javascript:void(0);" onclick="clouddataLogout()">logout</a>
     </p>
     <button class="svgAddNew" onclick="itemAddOpen()">${svgAddNew}</button>
