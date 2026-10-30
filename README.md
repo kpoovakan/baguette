@@ -13,7 +13,7 @@ Baguette is a web app for managing a commercial bakery. The [current demo](https
 * Color-coding, to assign to different bakery members
 * An option to add additional notes
 All data is saved locally to your browser. Items can be rearranged in their column (moved up and down) temporarily for better clarity, and their original positions will be reset upon page reload.  
-Add bakery orders to the Baguette dashboard by pressing the "plus" button in the bottom right corner.
+Add bakery orders to the Baguette dashboard by pressing the "plus" button in the bottom right corner. The dashboard only shows items for the current day and for the next six days; any items in the future are stored in localStorage and won't be displayed until they reach the criteria of "current day or next six days".
 
 ## Tech Stack
 All code has been built by [kpoovakan](https://kpoovakan.github.io); no libraries or packages were used.
