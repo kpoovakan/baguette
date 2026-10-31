@@ -20,7 +20,7 @@ Pretty self-explanatory...
 - [ ] Some way to move items from one day to another (one column to another)
 - [ ] In function for adding items to days, write code for custom "production stages" (option is currently in dropdown but commented out, uncomment it and add onclick to parent element)
 - [ ] Add a color-code chart to the bottom of the screen or something. Its entire div tag would be passed from the backend, and the frontend just appends it to the end of the document. That way, guest users won't see the color-code chart (because div style="display:none;") but registered premium users can have the color-code chart.
-- [ ] Change the CSS design of buttons and stuff, to have it match the input styles
+- [ ] Change the CSS design of buttons and stuff, to have it match the input styles; in addition to :hover, also add :focus for keyboard accessibility
 
 
 ## Do This Sometime Within The Next 314 Years
