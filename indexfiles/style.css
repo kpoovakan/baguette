@@ -190,7 +190,8 @@ fuschia, purple, teal, yellow, green, blue, red, orange */
 }
 .dayBar button {
     width: 100%;
-    color: var(--color);
+    color: #000000;
+    mix-blend-mode: screen;
     background-color: var(--colorForeground);
     border-color: var(--colorForeground);
 }
