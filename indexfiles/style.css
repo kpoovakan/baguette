@@ -21,17 +21,18 @@ body {
     font-style: normal;
     font-size: 62.5%;
     display: block;
-    a:link, a:visited {
-        color: var(--colorAccent);
-        text-decoration: none;
-        font-weight: 600;
-    }
-    a:hover {
-        text-decoration: underline;
-    }
 }
 p {
     font-size: 1.1rem;
+}
+a:link, a:visited {
+    color: var(--colorAccent);
+    text-decoration: none;
+    font-weight: 600;
+}
+a:hover {
+    text-decoration: underline;
+    text-decoration-style: dashed;
 }
 .content {
     display: block;
@@ -79,17 +80,18 @@ button {
     background-color: var(--colorAccent);
     color: var(--colorBackground);
     outline: none;
-    border: 3px solid var(--colorAccent);
+    border: 1px solid var(--colorAccent);
     border-radius: 3px;
     padding: 5px;
     box-sizing: border-box;
     font-size: 1.1rem;
     font-family: "Radio Canada", sans-serif;
 }
-button:hover {
+button:hover, button:focus {
     color: var(--colorAccent);
     background-color: var(--colorBackground);
     cursor: pointer;
+    border-style: dashed;
 }
 
 
@@ -107,8 +109,9 @@ button:hover {
     background-color: var(--colorBackground);
     border-color: color-mix(in oklab, #00000000 50%, var(--colorForeground));
     color: color-mix(in oklab, #00000000 50%, var(--colorForeground));
+    border-style: dashed;
 }
-.mainHeaderLess:hover {
+.mainHeaderLess:hover, .mainHeaderLess:focus {
     color: var(--colorBackground);
     border-color: var(--colorForeground);
     background-color: var(--colorForeground);
@@ -120,7 +123,7 @@ button:hover {
 }
 
 .plansBlock {
-    border: 1.314px solid var(--colorForeground);
+    border: 1.314px dashed var(--colorForeground);
     border-radius: 3px;
     width: max(50px, 31vw);
     padding: 13px;
