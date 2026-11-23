@@ -336,6 +336,7 @@ function itemMoveUp(thisElement) {
     const parent = thisElement.parentNode; //thisElement is the item itself, so this becomes the day's column
     const thisIndex = Array.prototype.indexOf.call(parent.children, thisElement);
     const after = thisIndex - 1;
+    if (after === 0) return; //so that item can't be moved above the day header
     itemMove(thisElement, after, parent);
     //move the item in the JSON data
     let tempId = parent.dataset.tempId;
@@ -350,16 +351,31 @@ function itemMoveUp(thisElement) {
     entries.splice((after - 1), 0, [thisElement.id, cur]);
     entries.splice(thisIndex, 1);
     //console.log(entries);
-
+    globalThis.temp[year][month][day] = Object.fromEntries(entries);
+    updateLocalStorage();
 }
 function itemMoveDown(thisElement) {
+    //move the item on the dashboard
     const parent = thisElement.parentNode;
     const thisIndex = Array.prototype.indexOf.call(parent.children, thisElement);
     var after = thisIndex + 2;
-    if (after > parent.childElementCount) {
-        var after = 0;
-    }
+    if (after > parent.childElementCount) return; //so that item cannot be moved above day header
     itemMove(thisElement, after, parent);
+    //move the item in the JSON data
+    let tempId = parent.dataset.tempId;
+    tempId = tempId.toString();
+    const year = tempId.at(0).toString() + tempId.at(1).toString() + tempId.at(2).toString() + tempId.at(3).toString();
+    const month = String(Number( tempId.at(5).toString() + tempId.at(6).toString() ));
+    const day = String(Number( tempId.at(8).toString() + tempId.at(9).toString() ));
+    //console.log(year);console.log(month);console.log(day);
+    let entries = globalThis.temp[year][month][day];
+    entries = Object.entries(entries);
+    let cur = globalThis.temp[year][month][day][thisElement.id];
+    entries.splice((thisIndex - 1), 1);
+    entries.splice(thisIndex, 0, [thisElement.id, cur]);
+    //console.log(entries);
+    globalThis.temp[year][month][day] = Object.fromEntries(entries);
+    updateLocalStorage();
 }
 async function itemComplete(thisElement) {
     if (thisElement.getAttribute("src") == "/indexfiles/true.svg") return;
@@ -598,4 +614,10 @@ function itemAddStage(thisElement) {
     } else {
         document.getElementById("stageCustom").style.display = "none";
     }
+}
+
+function updateLocalStorage(newData = globalThis.temp) {
+    globalThis.temp = newData || globalThis.temp;
+    let stringy = JSON.stringify(globalThis.temp);
+    window.localStorage.setItem("temp", stringy);
 }
