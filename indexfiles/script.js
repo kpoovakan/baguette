@@ -499,6 +499,22 @@ function itemAddPressed() { //grabs data from itemAdd dialog then runs addItem()
     if (stage === "") { focus("stageCustom"); alert("please add the description for custom production stage"); return; };
     if (color === "default") { focus("color"); alert("please add item color-coding"); return; };
     if (task === "") { focus("task"); alert("please add item position on dashboard"); return; }
+    // check for use of the word "constructor" or "__proto__" or "prototype"
+    const allInputs = `${name} ${customer} ${time} ${date} ${paid} ${stage} ${color} ${task} ${other}`;
+    if (allInputs.includes("constructor") || allInputs.includes("__proto__") || allInputs.includes("prototype")) {
+        if (allInputs.includes("constructor")) {
+            alert("sorry, but the word \"constructor\" cannot be used. please find a synonym.");
+            return;
+        }
+        if (allInputs.includes("__proto__")) {
+            alert("sorry, but the phrase \"__proto__\" cannot be used. please find a synonym.");
+            return;
+        }
+        if (allInputs.includes("prototype")) {
+            alert("sorry, but the word \"prototype\" cannot be used. please find a synonym.");
+            return;
+        }
+    }
     //convert some data into the format required
     var paid = JSON.parse(paid);
     var hour = time.at(0).toString() + time.at(1).toString();
