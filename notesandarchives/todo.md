@@ -11,9 +11,9 @@ Pretty self-explanatory...
 
 ## Do This Later
 - [ ] Connecting localStorage to cloud
-- [ ] Allowing items to be checked off
+- [x] Allowing items to be checked off
 - [ ] Editing previously created items
-- [ ] Add day of the week (Minggu, Senin, Selasa...) to top of columns
+- [x] Add day of the week (Minggu, Senin, Selasa...) to top of columns
 - [ ] Add an alert to frontend to warn and disable using the word "constructor" anywhere in Baguette user input
 - [ ] In function for adding items to days, make it also automatically add the item to the dashboard without having to reload the page
 - [ ] Saving an item's position in its column to localStorage and to the cloud
