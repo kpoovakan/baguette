@@ -30,9 +30,10 @@ a:link, a:visited {
     text-decoration: none;
     font-weight: 600;
 }
-a:hover {
+a:hover, a:focus {
     text-decoration: underline;
     text-decoration-style: dashed;
+    text-underline-offset: 3px;
 }
 .content {
     display: block;
