@@ -212,6 +212,7 @@ function saveNowButton(save) { // 1 for save, 0 for saved, changes the appearnac
 function uiLoginSetup() {
     document.getElementById("contentMain").innerHTML = contentLoggedIn;
     document.getElementById("contentMain").style.width = "100%";
+    dayHeaders();
     const thisYear = globalThis.temp[currentYear];
     const thisMonth = globalThis.temp[currentMonth];
     var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -302,6 +303,22 @@ function getDaysThisWeek(daysInMonth) { // returns an array of the week's days a
             }
         }
         return array; //I hope this works...
+    }
+}
+function dayHeaders() {
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const today = d.getDay();
+    //console.log(today);
+    for (let i = 0; i < 7; i++) {
+        var day = today + i;
+        if (day > 6) {
+            var day = day - 7;
+        }
+        var day = daysOfWeek[day];
+        let cur = document.createElement("p");
+        cur.className = "dayHeaders";
+        cur.innerText = day;
+        document.getElementById(`day${i+1}`).appendChild(cur);
     }
 }
 

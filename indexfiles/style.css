@@ -212,6 +212,13 @@ fuschia, purple, teal, yellow, green, blue, red, orange */
     font-size: min(1.0314cqw, 1.1rem);
     flex: 1 1 0;
 }
+.dayHeaders {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+    font-weight: 600;
+}
 .str {
     font-weight: 600;
 }
