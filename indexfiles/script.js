@@ -254,6 +254,7 @@ function getDaysThisWeek(daysInMonth) { // returns an array of the week's days a
             } else {
                 array.push(cur);
             }
+            document.getElementById(`day${i+1}`).dataset.tempId = `${currentYear} ${currentMonth} ${day}`; //don't delete those spaces
         }
         return array;
     } else { //oh no, this week includes two months!
@@ -264,6 +265,7 @@ function getDaysThisWeek(daysInMonth) { // returns an array of the week's days a
         for (let i = 0; i < firstMonth; i++) {
             let day = Number(currentDay);
             day = day + i; //the day being tracked for this i
+            document.getElementById(`day${i+1}`).dataset.tempId = `${currentYear} ${currentMonth} ${day}`; //don't delete those spaces, this adds custom attribute with identifier for referring back to temp later
             let cur = globalThis.temp[currentYear][currentMonth];
             if (cur === undefined) {
                 array.push(undefined);
@@ -288,12 +290,13 @@ function getDaysThisWeek(daysInMonth) { // returns an array of the week's days a
             var month = 0;
         }
         //this sets up data for the second month
-        for (let i = 0; i < secondMonth; i++) {
+        for (let i = 0; i < (secondMonth - 1); i++) {
             //so here, you would get the first day, then the second, then the third, and keep going, until you get the secondMonth variable's day, then you stop. like.. get the i+1 day?
             let day = i + 1;
             let cur = globalThis.temp[newYear][month];
             if (cur === undefined) {
                 array.push(undefined);
+                document.getElementById(`day${array.length}`).dataset.tempId = `${newYear} ${month} ${day}`; //don't delete those spaces, this adds custom attribute with identifier for referring back to temp later
                 continue;
             }
             cur = cur[day];
@@ -302,6 +305,7 @@ function getDaysThisWeek(daysInMonth) { // returns an array of the week's days a
             } else {
                 array.push(cur);
             }
+            document.getElementById(`day${array.length}`).dataset.tempId = `${newYear} ${month} ${day}`; //don't delete those spaces, this adds custom attribute with identifier for referring back to temp later
         }
         return array; //I hope this works...
     }
@@ -328,10 +332,25 @@ function itemMove(thisElement, after, cont) {
     cont.insertBefore(thisElement, before);
 }
 function itemMoveUp(thisElement) {
-    const parent = thisElement.parentNode;
+    //move the item on the dashboard
+    const parent = thisElement.parentNode; //thisElement is the item itself, so this becomes the day's column
     const thisIndex = Array.prototype.indexOf.call(parent.children, thisElement);
     const after = thisIndex - 1;
     itemMove(thisElement, after, parent);
+    //move the item in the JSON data
+    let tempId = parent.dataset.tempId;
+    tempId = tempId.toString();
+    const year = tempId.at(0).toString() + tempId.at(1).toString() + tempId.at(2).toString() + tempId.at(3).toString();
+    const month = String(Number( tempId.at(5).toString() + tempId.at(6).toString() ));
+    const day = String(Number( tempId.at(8).toString() + tempId.at(9).toString() ));
+    //console.log(year);console.log(month);console.log(day);
+    let entries = globalThis.temp[year][month][day];
+    entries = Object.entries(entries);
+    let cur = globalThis.temp[year][month][day][thisElement.id];
+    entries.splice((after - 1), 0, [thisElement.id, cur]);
+    entries.splice(thisIndex, 1);
+    //console.log(entries);
+
 }
 function itemMoveDown(thisElement) {
     const parent = thisElement.parentNode;
