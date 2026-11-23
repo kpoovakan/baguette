@@ -75,7 +75,7 @@ const contentLoggedIn = `
             <option value="false">item is unpaid and will be paid</option>
             <option value="true">item is free and marked as paid on Baguette dashboard</option>
         </select>
-        <select id="stage" autocomplete="off">
+        <select id="stage" autocomplete="off" onchange="itemAddStage(this)">
             <option value="default" disabled selected hidden>stage of production</option>
             <option value="make and bake">make and bake</option>
             <option value="make">make</option>
@@ -92,8 +92,9 @@ const contentLoggedIn = `
             <option value="sourdough fermentation">sourdough fermentation</option>
             <option value="sourdough shape or proof">sourdough shape or proof</option>
             <option value="add poison">add poison</option>
-            <!--<option value="custom">custom...</option>-->
+            <option value="custom">custom...</option>
         </select>
+        <textarea id="stageCustom" placeholder="describe this custom stage of production..." autocomplete="off" style="display: none;"></textarea>
         <select id="color" autocomplete="off">
             <option value="default" disabled selected hidden>item color-coding</option>
             <option value="yellow">sunshine yellow</option>
@@ -482,7 +483,8 @@ function itemAddPressed() { //grabs data from itemAdd dialog then runs addItem()
     const time = value("time");
     const date = value("date");
     var paid = value("paid");
-    const stage = value("stage");
+    var stage = value("stage");
+    if (stage === "custom") var stage = value("stageCustom");
     const color = value("color");
     const other = value("other");
     const task = value("task");
@@ -494,6 +496,7 @@ function itemAddPressed() { //grabs data from itemAdd dialog then runs addItem()
     if (date === "") { focus("date"); alert("please add item due date"); return; };
     if (paid === "default") { focus("paid"); alert("please add item payment status"); return; };
     if (stage === "default") { focus("stage"); alert("please add item production stage"); return; };
+    if (stage === "") { focus("stageCustom"); alert("please add the description for custom production stage"); return; };
     if (color === "default") { focus("color"); alert("please add item color-coding"); return; };
     if (task === "") { focus("task"); alert("please add item position on dashboard"); return; }
     //convert some data into the format required
@@ -553,4 +556,11 @@ function itemAddPressed() { //grabs data from itemAdd dialog then runs addItem()
     globalThis.temp[taskYear][taskMonth][taskDay][itemId] = object;
     window.localStorage.setItem("temp", JSON.stringify(globalThis.temp));
     window.location.reload();
+}
+function itemAddStage(thisElement) {
+    if (thisElement.value === "custom") {
+        document.getElementById("stageCustom").style.display = "block";
+    } else {
+        document.getElementById("stageCustom").style.display = "none";
+    }
 }
