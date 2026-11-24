@@ -131,7 +131,7 @@ const contentLoggedIn = `
             <option value="true">item was paid or item was free and marked as paid</option>
             <option value="false">item is unpaid and will be paid</option>
         </select>
-        <select id="editStage" autocomplete="off" onchange="itemAddStage(this)">
+        <select id="editStage" autocomplete="off" onchange="itemEditStage(this)">
             <option value="default" disabled selected hidden>stage of production</option>
             <option value="make and bake">make and bake</option>
             <option value="make">make</option>
@@ -744,6 +744,9 @@ function itemEditOpen(thisItem) {
     document.getElementById("editHold").dataset.id = content["id"];
     //show the edit dialog
     document.getElementById("itemEdit").showModal();
+    //remove the item temporarily from the database
+    delete globalThis.temp[year][month][day][content["id"]];
+    updateLocalStorage();
 }
 function itemEditClose() {
     document.getElementById("itemEdit").close();
@@ -847,6 +850,13 @@ function itemEditPressed() {
     globalThis.temp[taskYear][taskMonth][taskDay][itemId] = object;
     updateLocalStorage();
     window.location.reload();
+}
+function itemEditStage(thisElement) {
+    if (thisElement.value === "custom") {
+        document.getElementById("editStageCustom").style.display = "block";
+    } else {
+        document.getElementById("editStageCustom").style.display = "none";
+    }
 }
 
 function updateLocalStorage(newData = globalThis.temp) {
