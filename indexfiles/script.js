@@ -741,7 +741,13 @@ function itemEditOpen(thisItem) {
     newValue("editColor", color);
     newValue("editOther", other);
     document.getElementById("editCheck").src = `/indexfiles/${check}.svg`;
-    document.getElementById("editHold").dataset.id = content["id"];
+    const editHold = document.getElementById("editHold");
+    editHold.dataset.id = content["id"];
+    editHold.dataset.column = thisItem.parentNode.id.at(-1);
+    editHold.innerText = JSON.stringify(content);
+    editHold.dataset.year = year;
+    editHold.dataset.month = month;
+    editHold.dataset.day = day;
     //show the edit dialog
     document.getElementById("itemEdit").showModal();
     //remove the item temporarily from the database
@@ -750,6 +756,16 @@ function itemEditOpen(thisItem) {
 }
 function itemEditClose() {
     document.getElementById("itemEdit").close();
+    const editHold = document.getElementById("editHold");
+    const data = JSON.parse(editHold.innerText);
+    const column = editHold.dataset.column;
+    //addItem(column, data);
+    const year = editHold.dataset.year;
+    const month = editHold.dataset.month;
+    const day = editHold.dataset.day;
+    const id = editHold.dataset.id;
+    globalThis.temp[year][month][day][id] = data;
+    updateLocalStorage();
 }
 function itemEditCheck(thisElement) {
     if (thisElement.src.includes("true")) {
