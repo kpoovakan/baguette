@@ -14,6 +14,7 @@ window.addEventListener("message", (event) => {
         //window.localStorage.setItem("sha", globalThis.temp.sha);
         // etag and sha don't seem to be working... fix this later
         globalThis.temp = idk;
+        window.location.reload();
     } else if (data && data.type === 'GITHUB_SAVE_SUCCESS') {
         globalThis.backendSave.postMessage({
             type: "GITHUB_SAVE_SEND",
