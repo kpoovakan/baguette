@@ -163,8 +163,8 @@ const contentLoggedIn = `
             <option value="orange">orange for the oven</option>
         </select>
         <textarea id="editOther" placeholder="additional notes..." autocomplete="off"></textarea>
-        <div class="addItemFlex" style="gap: min(13px, 3%);">
-            <img src="" id="editCheck" onclick="itemEditCheck(this)" />
+        <div class="addItemFlex" style="gap: min(13px, 3%); user-select: none;" onclick="itemEditCheck()">
+            <img src="" id="editCheck"/>
             <p>item marked as complete</p>
         </div>
         <div class="addItemFlex">
@@ -263,10 +263,12 @@ function saveNowButton(save) { // 1 for save, 0 for saved, changes the appearnac
         button.style.color = "var(--colorForeground)";
         button.style.pointerEvents = "auto";
         button.innerText = "save now";
+        button.setAttribute("onclick", "userSave()");
     } else if (save === 0) {
         button.style.color = "color-mix(in oklab, #00000000 50%, var(--colorForeground))";
         button.style.pointerEvents = "none";
         button.innerText = "saved to cloud";
+        button.removeAttribute("onclick");
     } else {
         console.error(`function saveNowButton has wrong parameter: ${save}`);
     }
@@ -475,9 +477,10 @@ async function itemComplete(thisElement) {
     if (!confirm) return;
     thisElement.src = "/indexfiles/true.svg";
     globalThis.temp[year][month][day][id]["check"] = true;
-    var json = JSON.stringify(globalThis.temp);
-    window.localStorage.setItem("temp", json);
-    console.log(json);
+    //var json = JSON.stringify(globalThis.temp);
+    //window.localStorage.setItem("temp", json);
+    updateLocalStorage();
+    //console.log(json);
     var color = window.getComputedStyle(thisElement);
     var color = color.getPropertyValue("--color");
     document.getElementById(id).style.setProperty("--color", `color-mix(in oklab, #00000000 75%, ${color})`);
@@ -670,7 +673,8 @@ function itemAddPressed() { //grabs data from itemAdd dialog then runs addItem()
     globalThis.temp[taskYear][taskMonth] = globalThis.temp[taskYear][taskMonth] || {};
     globalThis.temp[taskYear][taskMonth][taskDay] = globalThis.temp[taskYear][taskMonth][taskDay] || {};
     globalThis.temp[taskYear][taskMonth][taskDay][itemId] = object;
-    window.localStorage.setItem("temp", JSON.stringify(globalThis.temp));
+    //window.localStorage.setItem("temp", JSON.stringify(globalThis.temp));
+    updateLocalStorage();
     window.location.reload();
 }
 function itemAddStage(thisElement) {
@@ -767,7 +771,7 @@ function itemEditClose() {
     globalThis.temp[year][month][day][id] = data;
     updateLocalStorage();
 }
-function itemEditCheck(thisElement) {
+function itemEditCheck(thisElement = document.getElementById("editCheck")) {
     if (thisElement.src.includes("true")) {
         thisElement.src = "/indexfiles/false.svg";
     } else if (thisElement.src.includes("false")) {

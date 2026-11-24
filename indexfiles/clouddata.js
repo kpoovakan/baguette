@@ -10,8 +10,9 @@ window.addEventListener("message", (event) => {
         globalThis.temp = data.payload;
         let idk = JSON.stringify(globalThis.temp.content);
         window.localStorage.setItem("temp", idk);
-        window.localStorage.setItem("etag", globalThis.temp.etag);
-        window.localStorage.setItem("sha", globalThis.temp.sha);
+        //window.localStorage.setItem("etag", globalThis.temp.etag);
+        //window.localStorage.setItem("sha", globalThis.temp.sha);
+        // etag and sha don't seem to be working... fix this later
         globalThis.temp = idk;
     } else if (data && data.type === 'GITHUB_SAVE_SUCCESS') {
         globalThis.backendSave.postMessage({
