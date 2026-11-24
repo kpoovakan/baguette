@@ -188,6 +188,16 @@ fuschia, purple, teal, yellow, green, blue, red, orange */
     margin: 0;
     padding: 13px;
     box-sizing: border-box;
+    position: relative;
+}
+.dayBar::after {
+    content: "";
+    position: absolute;
+    top: 13px;
+    bottom: 13px;
+    right: 5px;
+    border-right: 1px dashed var(--colorForeground);
+    pointer-events: none;
 }
 .dayBar button {
     width: 100%;
@@ -321,4 +331,15 @@ textarea:focus {
 }
 .addItemFlex > * {
     flex: 2;
+}
+.addItemFlex > img {
+    flex: 0;
+    flex-shrink: 3.14;
+    margin: 0;
+    padding: inherit;
+    height: 26px;
+    vertical-align: middle;
+}
+.addItemFlex > img:hover {
+    cursor: pointer;
 }

@@ -112,6 +112,66 @@ const contentLoggedIn = `
             <button onclick="itemAddClose()" style="flex: 1;">cancel changes</button>
         </div>
     </dialog>
+
+    <dialog id="itemEdit" class="addItem">
+        <p class="str">edit an item</p>
+        <input id="editName" type="text" placeholder="item name" autocomplete="off" autofocus>
+        <input id="editCustomer" type="text" placeholder="customer name" autocomplete="off">
+        <div class="addItemFlex">
+            <p>time and date for item <i>delivery</i></p>
+            <input id="editTime" type="time" step="60" autocomplete="off">
+            <input id="editDate" type="date" autocomplete="off">
+        </div>
+        <div class="addItemFlex">
+            <p>date for this task's <i>location on dashboard</i></p>
+            <input id="editTask" type="date" autocomplete="off">
+        </div>
+        <select id="editPaid" autocomplete="off">
+            <option value="default" disabled selected hidden>payment status</option>
+            <option value="true">item was paid or item was free and marked as paid</option>
+            <option value="false">item is unpaid and will be paid</option>
+        </select>
+        <select id="editStage" autocomplete="off" onchange="itemAddStage(this)">
+            <option value="default" disabled selected hidden>stage of production</option>
+            <option value="make and bake">make and bake</option>
+            <option value="make">make</option>
+            <option value="make and chill">make and chill</option>
+            <option value="preheat oven">preheat oven</option>
+            <option value="bake">bake</option>
+            <option value="leave to cool">leave to cool</option>
+            <option value="cool and decorate">cool and decorate</option>
+            <option value="packaging">packaging</option>
+            <option value="sourdough general prep">sourdough general prep</option>
+            <option value="sourdough levain">sourdough levain</option>
+            <option value="sourdough autolyse">sourdough autolyse</option>
+            <option value="sourdough stretch and fold">sourdough stretch and fold</option>
+            <option value="sourdough fermentation">sourdough fermentation</option>
+            <option value="sourdough shape or proof">sourdough shape or proof</option>
+            <option value="add poison">add poison</option>
+            <option value="custom">custom...</option>
+        </select>
+        <textarea id="editStageCustom" placeholder="describe this custom stage of production..." autocomplete="off" style="display: none;"></textarea>
+        <select id="editColor" autocomplete="off">
+            <option value="default" disabled selected hidden>item color-coding</option>
+            <option value="yellow">sunshine yellow</option>
+            <option value="green">green</option>
+            <option value="teal">teal</option>
+            <option value="purple">lavender purple</option>
+            <option value="blue">blue</option>
+            <option value="red">red</option>
+            <option value="pink">bright fuschia pink</option>
+            <option value="orange">orange for the oven</option>
+        </select>
+        <textarea id="editOther" placeholder="additional notes..." autocomplete="off"></textarea>
+        <div class="addItemFlex" style="gap: min(13px, 3%);">
+            <img src="" id="editCheck" onclick="itemEditCheck(this)" />
+            <p>item marked as complete</p>
+        </div>
+        <div class="addItemFlex">
+            <button onclick="itemEditPressed()" style="flex: 2;">save changes to Baguette</button>
+            <button onclick="itemEditClose()" style="flex: 1;">cancel changes</button>
+        </div>
+    </dialog>
 `;
 const reference1 = `
 <div class="dayContainer">
@@ -457,7 +517,7 @@ function addItem(column, data) { //actually adds the items
     down.innerText = "v";
     const edit = document.createElement("img");
     edit.src = "/indexfiles/edit.svg";
-    edit.setAttribute("onclick", "itemEdit(this.parentNode.parentNode)");
+    edit.setAttribute("onclick", "itemEditOpen(this.parentNode.parentNode)");
     dayBar.appendChild(check);
     dayBar.appendChild(up);
     dayBar.appendChild(down);
@@ -617,6 +677,80 @@ function itemAddStage(thisElement) {
         document.getElementById("stageCustom").style.display = "block";
     } else {
         document.getElementById("stageCustom").style.display = "none";
+    }
+}
+function itemEditOpen(thisItem) {
+    //grab the item's data
+    let tempId = thisItem.parentNode.dataset.tempId;
+    tempId = tempId.toString();
+    const year = tempId.at(0).toString() + tempId.at(1).toString() + tempId.at(2).toString() + tempId.at(3).toString();
+    const month = String(Number( tempId.at(5).toString() + tempId.at(6).toString() ));
+    const day = String(Number( tempId.at(8).toString() + tempId.at(9).toString() ));
+    const content = globalThis.temp[year][month][day][thisItem.id];
+    console.log(content);
+    //match the data to variables
+    const name = content["name"];
+    const customer = content["customer"];
+    if (content["clock"] === "am") {
+        var time = String(content["hour"]) + ":" + String(content["minute"]);
+    } else if (content["clock"] === "pm") {
+        var time = String( (content["hour"]) + 12) + ":" + String(content["minute"]);
+    }
+    const date = `9999-${String(content["month"]).padStart(2, "0")}-${String(content["day"]).padStart(2, "0")}`;
+    var paid = content["paid"];
+    const customStages = [
+        "make and bake",
+        "make",
+        "bake",
+        "make and chill",
+        "preheat oven",
+        "bake",
+        "leave to cool",
+        "cool and decorate",
+        "packaging",
+        "sourdough general prep",
+        "sourdough levain",
+        "sourdough autolyse",
+        "sourdough stretch and fold",
+        "sourdough fermentation",
+        "sourdough shape or proof",
+        "add poison",
+        "custom"
+    ];
+    var stage = content["stage"];
+    if (!(customStages.includes(stage))) {
+        document.getElementById("editStageCustom").style.display = "block";
+        document.getElementById("editStageCustom").value = stage;
+        var stage = "custom";
+    }
+    const color = content["color"];
+    const other = content["other"];
+    const task = `${year}-${String(Number(month)+1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+    const check = content["check"];
+    //console.log(name);console.log(customer);console.log(time);console.log(date);console.log(paid);console.log(stage);console.log(color);console.log(other);console.log(task);console.log(check);
+    //use the data to pre-fill the modal with the item's current settings
+    const newValue = (id, newValue) => document.getElementById(id).value = newValue;
+    newValue("editName", name);
+    newValue("editCustomer", customer);
+    newValue("editTime", time);
+    newValue("editDate", date);
+    newValue("editTask", task);
+    newValue("editPaid", paid);
+    newValue("editStage", stage);
+    newValue("editColor", color);
+    newValue("editOther", other);
+    document.getElementById("editCheck").src = `/indexfiles/${check}.svg`;
+    //show the edit dialog
+    document.getElementById("itemEdit").showModal();
+}
+function itemEditClose() {
+    document.getElementById("itemEdit").close();
+}
+function itemEditCheck(thisElement) {
+    if (thisElement.src.includes("true")) {
+        thisElement.src = "/indexfiles/false.svg";
+    } else if (thisElement.src.includes("false")) {
+        thisElement.src = "/indexfiles/true.svg";
     }
 }
 
