@@ -12,13 +12,14 @@ Pretty self-explanatory...
 ## Do This Later
 - [ ] Connecting localStorage to cloud
 - [x] Allowing items to be checked off
-- [ ] Editing previously created items
+- [x] Editing previously created items
 - [x] Add day of the week (Minggu, Senin, Selasa...) to top of columns
 - [x] Add an alert to frontend to warn and disable using the word "constructor" anywhere in Baguette user input
 - [x] Saving an item's position in its column to localStorage and to the cloud
-- [ ] Some way to move items from one day to another (one column to another)
+- [x] Some way to move items from one day to another (one column to another)
 - [x] In function for adding items to days, write code for custom "production stages" (option is currently in dropdown but commented out, uncomment it and add onclick to parent element)
 - [ ] Add a color-code chart to the bottom of the screen or something. Its entire div tag would be passed from the backend, and the frontend just appends it to the end of the document. That way, guest users won't see the color-code chart (because div style="display:none;") but registered premium users can have the color-code chart.
+- [ ] Add something in navbar to view plan info, and premium users can see who else is on their team and therefore can view their info
 - [x] Change the CSS design of buttons and stuff, to have it match the input styles; in addition to :hover, also add :focus for keyboard accessibility
 
 
