@@ -171,6 +171,7 @@ const contentLoggedIn = `
             <button onclick="itemEditPressed()" style="flex: 2;">save changes to Baguette</button>
             <button onclick="itemEditClose()" style="flex: 1;">cancel changes</button>
         </div>
+        <p style="display: none;" id="editHold">this temporarily holds information, like the item id</p>
     </dialog>
 `;
 const reference1 = `
@@ -687,14 +688,14 @@ function itemEditOpen(thisItem) {
     const month = String(Number( tempId.at(5).toString() + tempId.at(6).toString() ));
     const day = String(Number( tempId.at(8).toString() + tempId.at(9).toString() ));
     const content = globalThis.temp[year][month][day][thisItem.id];
-    console.log(content);
+    //console.log(content);
     //match the data to variables
     const name = content["name"];
     const customer = content["customer"];
     if (content["clock"] === "am") {
-        var time = String(content["hour"]) + ":" + String(content["minute"]);
+        var time = String(content["hour"]).padStart(2, "0") + ":" + String(content["minute"]).padStart(2, "0");
     } else if (content["clock"] === "pm") {
-        var time = String( (content["hour"]) + 12) + ":" + String(content["minute"]);
+        var time = String( (content["hour"]) + 12) + ":" + String(content["minute"]).padStart(2, "0");
     }
     const date = `9999-${String(content["month"]).padStart(2, "0")}-${String(content["day"]).padStart(2, "0")}`;
     var paid = content["paid"];
@@ -740,6 +741,7 @@ function itemEditOpen(thisItem) {
     newValue("editColor", color);
     newValue("editOther", other);
     document.getElementById("editCheck").src = `/indexfiles/${check}.svg`;
+    document.getElementById("editHold").dataset.id = content["id"];
     //show the edit dialog
     document.getElementById("itemEdit").showModal();
 }
@@ -752,6 +754,99 @@ function itemEditCheck(thisElement) {
     } else if (thisElement.src.includes("false")) {
         thisElement.src = "/indexfiles/true.svg";
     }
+}
+function itemEditPressed() {
+    //grab data from the dialog
+    const value = (id) => document.getElementById(`edit${id}`).value;
+    const name = value("Name");
+    const customer = value("Customer");
+    const time = value("Time");
+    const date = value("Date");
+    var paid = value("Paid");
+    var stage = value("Stage");
+    if (stage === "custom") var stage = value("StageCustom");
+    const color = value("Color");
+    const other = value("Other");
+    const task = value("Task");
+    if (document.getElementById("editCheck").src.includes("true")) var check = true;
+    if (document.getElementById("editCheck").src.includes("false")) var check = false;
+    //check for empty values
+    const focus = (id) => document.getElementById(`edit${id}`).focus();
+    if (name === "") { focus("Name"); alert("please add item name"); return; };
+    if (customer === "") { focus("Customer"); alert("please add customer name"); return; };
+    if (time === "") { focus("Time"); alert("please add item delivery time"); return; };
+    if (date === "") { focus("Date"); alert("please add item due date"); return; };
+    if (paid === "default") { focus("Paid"); alert("please add item payment status"); return; };
+    if (stage === "default") { focus("Stage"); alert("please add item production stage"); return; };
+    if (stage === "") { focus("StageCustom"); alert("please add the description for custom production stage"); return; };
+    if (color === "default") { focus("Color"); alert("please add item color-coding"); return; };
+    if (task === "") { focus("Task"); alert("please add item position on dashboard"); return; }
+    // check for use of the word "constructor" or "__proto__" or "prototype"
+    const allInputs = `${name} ${customer} ${time} ${date} ${paid} ${stage} ${color} ${task} ${other}`;
+    if (allInputs.includes("constructor") || allInputs.includes("__proto__") || allInputs.includes("prototype")) {
+        if (allInputs.includes("constructor")) {
+            alert("sorry, but the word \"constructor\" cannot be used. please find a synonym.");
+            return;
+        }
+        if (allInputs.includes("__proto__")) {
+            alert("sorry, but the phrase \"__proto__\" cannot be used. please find a synonym.");
+            return;
+        }
+        if (allInputs.includes("prototype")) {
+            alert("sorry, but the word \"prototype\" cannot be used. please find a synonym.");
+            return;
+        }
+    }
+    //convert some data into the format required
+    var paid = JSON.parse(paid);
+    var hour = time.at(0).toString() + time.at(1).toString();
+    if ((hour - 12) > 0) {
+        var hour = hour - 12;
+        var clock = "pm";
+    } else var clock = "am";
+    var hour = Number(hour);
+    const minute = Number( time.at(3).toString() + time.at(4).toString() );
+    const year = date.at(0).toString() + date.at(1).toString() + date.at(2).toString() + date.at(3).toString();
+    const month = String(Number( date.at(5).toString() + date.at(6).toString() ));
+    const day = String(Number( date.at(8).toString() + date.at(9).toString() ));
+    //convert data into a JSON object
+    const itemId = document.getElementById("editHold").dataset.id;
+    console.groupCollapsed(`logs for item ${itemId}`);
+    console.log(`this item's id is: ${itemId}`);
+    var object = {}; //yupperpoodles, such a creative object name
+    object.name = name;
+    object.customer = customer;
+    object.hour = Number(hour);
+    object.minute = Number(minute);
+    object.clock = clock;
+    object.month = Number(month);
+    object.day = Number(day);
+    object.paid = paid;
+    object.stage = stage;
+    object.check = check;
+    object.color = color;
+    object.other = other;
+    object.id = itemId;
+    console.log(object);
+    //figger out where on the dashboard this item goes
+    const taskYear = task.at(0).toString() + task.at(1).toString() + task.at(2).toString() + task.at(3).toString();
+    var taskMonth = Number( task.at(5).toString() + task.at(6).toString() );
+    var taskMonth = taskMonth - 1; //becuz months are zero-indexed
+    var taskMonth = String(taskMonth);
+    const taskDay = String(Number( task.at(8).toString() + task.at(9).toString() ));
+    console.group(`item position on dashboard:`);
+    console.log(taskYear);
+    console.log(taskMonth);
+    console.log(taskDay);
+    console.groupEnd();
+    console.groupEnd();
+    //add item to dashboard and globalThis.temp
+    globalThis.temp[taskYear] = globalThis.temp[taskYear] || {};
+    globalThis.temp[taskYear][taskMonth] = globalThis.temp[taskYear][taskMonth] || {};
+    globalThis.temp[taskYear][taskMonth][taskDay] = globalThis.temp[taskYear][taskMonth][taskDay] || {};
+    globalThis.temp[taskYear][taskMonth][taskDay][itemId] = object;
+    updateLocalStorage();
+    window.location.reload();
 }
 
 function updateLocalStorage(newData = globalThis.temp) {
