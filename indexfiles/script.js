@@ -419,7 +419,7 @@ async function itemComplete(thisElement) {
     console.log(json);
     var color = window.getComputedStyle(thisElement);
     var color = color.getPropertyValue("--color");
-    document.getElementById(id).style.setProperty("--color", `color-mix(in oklab, #00000000 50%, ${color})`)
+    document.getElementById(id).style.setProperty("--color", `color-mix(in oklab, #00000000 75%, ${color})`);
 }
 
 function addItem(column, data) { //actually adds the items
@@ -455,9 +455,13 @@ function addItem(column, data) { //actually adds the items
     const down = document.createElement("button");
     down.setAttribute("onclick", "itemMoveDown(this.parentNode.parentNode)");
     down.innerText = "v";
+    const edit = document.createElement("img");
+    edit.src = "/indexfiles/edit.svg";
+    edit.setAttribute("onclick", "itemEdit(this.parentNode.parentNode)");
     dayBar.appendChild(check);
     dayBar.appendChild(up);
     dayBar.appendChild(down);
+    dayBar.appendChild(edit);
 
     const dayInfo = document.createElement("div");
     dayInfo.className = "dayInfo";
@@ -500,7 +504,7 @@ function addItem(column, data) { //actually adds the items
     if (data.check === true) {
         var color = window.getComputedStyle(thisItem);
         var color = color.getPropertyValue("--color");
-        thisItem.style.setProperty("--color", `color-mix(in oklab, #00000000 50%, ${color})`)
+        thisItem.style.setProperty("--color", `color-mix(in oklab, #00000000 75%, ${color})`);
     }
 }
 

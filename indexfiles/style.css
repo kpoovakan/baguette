@@ -195,6 +195,7 @@ fuschia, purple, teal, yellow, green, blue, red, orange */
     mix-blend-mode: screen;
     background-color: var(--colorForeground);
     border-color: var(--colorForeground);
+    padding: 3px;
 }
 .dayBar button:hover, button:focus {
     background-color: transparent;
