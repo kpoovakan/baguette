@@ -99,14 +99,14 @@ const contentLoggedIn = `
         <div id="addItemColorCoding"></div>
         <select id="color" autocomplete="off">
             <option value="default" disabled selected hidden>item color-coding</option>
-            <option value="yellow">sunshine yellow</option>
-            <option value="green">green</option>
-            <option value="teal">teal</option>
-            <option value="purple">lavender purple</option>
-            <option value="blue">blue</option>
-            <option value="red">red</option>
-            <option value="pink">bright fuschia pink</option>
-            <option value="orange">orange for the oven</option>
+            <option value="yellow" id="addyellow">sunshine yellow</option>
+            <option value="green" id="addgreen">green</option>
+            <option value="teal" id="addteal">teal</option>
+            <option value="purple" id="addpurple">lavender purple</option>
+            <option value="blue" id="addblue">blue</option>
+            <option value="red" id="addred">red</option>
+            <option value="pink" id="addpink">bright fuschia pink</option>
+            <option value="orange" id="addorange">orange for the oven</option>
         </select>
         <textarea id="other" placeholder="additional notes..." autocomplete="off"></textarea>
         <div class="addItemFlex">
@@ -156,14 +156,14 @@ const contentLoggedIn = `
         <div id="editItemColorCoding"></div>
         <select id="editColor" autocomplete="off">
             <option value="default" disabled selected hidden>item color-coding</option>
-            <option value="yellow">sunshine yellow</option>
-            <option value="green">green</option>
-            <option value="teal">teal</option>
-            <option value="purple">lavender purple</option>
-            <option value="blue">blue</option>
-            <option value="red">red</option>
-            <option value="pink">bright fuschia pink</option>
-            <option value="orange">orange for the oven</option>
+            <option value="yellow" id="edityellow">sunshine yellow</option>
+            <option value="green" id="editgreen">green</option>
+            <option value="teal" id="editteal">teal</option>
+            <option value="purple" id="editpurple">lavender purple</option>
+            <option value="blue" id="editblue">blue</option>
+            <option value="red" id="editred">red</option>
+            <option value="pink" id="editpink">bright fuschia pink</option>
+            <option value="orange" id="editorange">orange for the oven</option>
         </select>
         <textarea id="editOther" placeholder="additional notes..." autocomplete="off"></textarea>
         <div class="addItemFlex" style="gap: min(13px, 3%); user-select: none;" onclick="itemEditCheck()">
@@ -368,7 +368,8 @@ function dayHeaders() {
         document.getElementById(`day${i+1}`).appendChild(cur);
     }
 }
-function colorsFooters(data) { // pass the entire received thing as the data, not just the colors object
+function colorCoding(data) { // pass the entire received thing as the data, not just the colors object
+    //make the footer at the bottom of dashboard
     const json = JSON.parse(data);
     const dataColors = json.colors;
     if ((!dataColors) || dataColors === undefined) return;
@@ -391,10 +392,21 @@ function colorsFooters(data) { // pass the entire received thing as the data, no
     divColors.appendChild(pink);
     divColors.appendChild(orange);
     document.getElementById("colorCoding").appendChild(divColors);
-    const addItem = divColors.cloneNode(true);
+    //make a similar footer thing but on dialogs, depreated
+    /*const addItem = divColors.cloneNode(true);
     const editItem = divColors.cloneNode(true);
     document.getElementById("addItemColorCoding").appendChild(addItem);
-    document.getElementById("editItemColorCoding").appendChild(editItem);
+    document.getElementById("editItemColorCoding").appendChild(editItem);*/
+    //add color captions to selections in dialog
+    const ea = Object.keys(dataColors);
+    for (let i = 0; i < ea.length; i++) {
+        let cur = ea[i];
+        let content = document.getElementById(`add${cur}`).textContent;
+        let identify = dataColors[cur];
+        identify = identify.toUpperCase();
+        document.getElementById(`add${cur}`).textContent = `${identify} - ${content}`;
+        document.getElementById(`edit${cur}`).textContent = `${identify} - ${content}`;
+    }
 }
 function colorSpan(color, data) {
     const colors = {
