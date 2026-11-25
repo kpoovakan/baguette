@@ -26,6 +26,7 @@ Pretty self-explanatory...
 - [ ] Add "leave? changes you make may not be saved" whenever user attempts to leave and saveNowButton is enabled
 - [ ] Fetch new data upon page reload
 - [ ] Editing items and editing the time doesn't save the correct am/pm, fix this bug
+- [ ] Fix bug where the popup when sending data to cloud won't be closed and therefore saveNowButton(0) doesn't run
 
 
 ## Do This Sometime Within The Next 314 Years
