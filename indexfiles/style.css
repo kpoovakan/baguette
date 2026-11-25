@@ -13,6 +13,19 @@
     padding: 3vw;
 }
 
+@font-face {
+    font-family: "Radio Canada";
+    src: url("radiocanada.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Hurricane";
+    src: url("hurricane.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     background-color: var(--colorBackground);
     color: var(--colorForeground);
