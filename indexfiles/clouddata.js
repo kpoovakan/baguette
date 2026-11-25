@@ -4,7 +4,7 @@ window.addEventListener("message", (event) => {
     if (event.origin !== worker) return;
     const data = event.data;
     if (data && data.type === 'GITHUB_AUTH_SUCCESS') {
-        console.log("Received data from GitHub OAuth: ", data.payload);
+        console.log("Received data from GitHub OAuth: ", data);
         /*const username = data.payload.username;
         console.log(`Your username is ${username}`);*/
         globalThis.temp = data.payload;
@@ -14,7 +14,7 @@ window.addEventListener("message", (event) => {
         //window.localStorage.setItem("sha", globalThis.temp.sha);
         // etag and sha don't seem to be working... fix this later
         globalThis.temp = idk;
-        window.location.reload();
+        //window.location.reload();
     } else if (data && data.type === 'GITHUB_SAVE_SUCCESS') {
         globalThis.backendSave.postMessage({
             type: "GITHUB_SAVE_SEND",

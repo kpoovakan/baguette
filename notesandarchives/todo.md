@@ -10,7 +10,7 @@ Pretty self-explanatory...
 - [x] Separate pre-release page without cloud features
 
 ## Do This Later
-- [ ] Connecting localStorage to cloud
+- [x] Connecting localStorage to cloud
 - [x] Allowing items to be checked off
 - [x] Editing previously created items
 - [x] Add day of the week (Minggu, Senin, Selasa...) to top of columns
@@ -23,10 +23,10 @@ Pretty self-explanatory...
 - [x] Change the CSS design of buttons and stuff, to have it match the input styles; in addition to :hover, also add :focus for keyboard accessibility
 - [x] Fix bug where reloading the page while editing an item will make the item disappear
 - [ ] When connecting localStorage to the cloud, figure out how to check for new data upon a new session or something without making it happen whenever reload is for resetting the dashboard
-- [ ] Add "leave? changes you make may not be saved" whenever user attempts to leave and saveNowButton is enabled
+- [x] Add "leave? changes you make may not be saved" whenever user attempts to leave and saveNowButton is enabled
 - [ ] Fetch new data upon page reload
 - [ ] Editing items and editing the time doesn't save the correct am/pm, fix this bug
-- [ ] Fix bug where the popup when sending data to cloud won't be closed and therefore saveNowButton(0) doesn't run
+- [x] Fix bug where the popup when sending data to cloud won't be closed and therefore saveNowButton(0) doesn't run
 
 
 ## Do This Sometime Within The Next 314 Years
