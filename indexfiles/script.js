@@ -174,52 +174,12 @@ const contentLoggedIn = `
         <p style="display: none;" id="editHold">this temporarily holds information, like the item id</p>
     </dialog>
 `;
-const reference1 = `
-<div class="dayContainer">
-    <div class="dayColumn" id="day1">
-        <div class="dayItem">
-            <button onclick="itemMoveUp(this.parentNode)">^</button>
-            ONE
-            <button onclick="itemMoveDown(this.parentNode)">v</button>
-        </div>
-        <div class="dayItem">
-            <button onclick="itemMoveUp(this.parentNode)">^</button>
-            TWO
-            <button onclick="itemMoveDown(this.parentNode)">v</button>
-        </div>
-        <div class="dayItem">
-            <button onclick="itemMoveUp(this.parentNode)">^</button>
-            THREE
-            <button onclick="itemMoveDown(this.parentNode)">v</button>
-        </div>
-    </div>
-    <div class="dayColumn" id="day2">
-        <div class="dayItem">
-            <button onclick="itemMoveUp(this.parentNode)">^</button>
-            ONE
-            <button onclick="itemMoveDown(this.parentNode)">v</button>
-        </div>
-        <div class="dayItem">
-            <button onclick="itemMoveUp(this.parentNode)">^</button>
-            Everyday, I see the quick brown <br>fox jump over the lazy dog.
-            <button onclick="itemMoveDown(this.parentNode)">v</button>
-        </div>
-    </div>
-</div>
-`;
-const reference2 = `
-            <div class="dayItem" id="sdkgxvbc">
-                <div class="dayBar"><img src="/indexfiles/false.svg"><button onclick="itemMoveUp(this.parentNode.parentNode)">^</button><button onclick="itemMoveDown(this.parentNode.parentNode)">v</button></div>
-                <div class="dayInfo">
-                    <br>
-                    <p class="str">Poisonous Muffins</p>
-                    <p><span>For Ze Bald</span>⠀⠀⠀<span>Unpaid</span></p>
-                    <p class="str">Delivery 3:14 AM on Wed 9/28</p>
-                    <p>Make and bake</p>
-                    <p class="str">No eggs</p>
-                </div>
-            </div>
-`;
+
+/* info for how making changes to the dashboard works
+first you must save all changes to globalthis.temp
+then you must run updateLocalStorage() to update localStorage.temp to match globalThis.temp
+then you could run uiLoginSetup() to update the dashboard visually
+then you must run saveNowButton(1) to turn on the button to let users save to the cloud */
 
 const d = new Date();
 const currentYear = d.getFullYear().toString();
@@ -272,6 +232,7 @@ function saveNowButton(save) { // 1 for save, 0 for saved, changes the appearnac
     } else {
         console.error(`function saveNowButton has wrong parameter: ${save}`);
     }
+    //console.log("saveNowButton triggered");
 }
 function uiLoginSetup() {
     document.getElementById("contentMain").innerHTML = contentLoggedIn;
@@ -416,6 +377,7 @@ function itemMoveUp(thisElement) {
     //console.log(entries);
     globalThis.temp[year][month][day] = Object.fromEntries(entries);
     updateLocalStorage();
+    saveNowButton(1);
 }
 function itemMoveDown(thisElement) {
     //move the item on the dashboard
@@ -439,6 +401,7 @@ function itemMoveDown(thisElement) {
     //console.log(entries);
     globalThis.temp[year][month][day] = Object.fromEntries(entries);
     updateLocalStorage();
+    saveNowButton(1);
 }
 async function itemComplete(thisElement) {
     if (thisElement.getAttribute("src") == "/indexfiles/true.svg") return;
@@ -477,9 +440,8 @@ async function itemComplete(thisElement) {
     if (!confirm) return;
     thisElement.src = "/indexfiles/true.svg";
     globalThis.temp[year][month][day][id]["check"] = true;
-    //var json = JSON.stringify(globalThis.temp);
-    //window.localStorage.setItem("temp", json);
     updateLocalStorage();
+    saveNowButton(1);
     //console.log(json);
     var color = window.getComputedStyle(thisElement);
     var color = color.getPropertyValue("--color");
@@ -546,7 +508,7 @@ function addItem(column, data) { //actually adds the items
     next.appendChild(paid);
     const delivery = document.createElement("p");
     delivery.className = "str";
-    delivery.innerText = `Delivery ${data.hour}\:${data.minute} ${data.clock.toUpperCase()} on ${data.month}/${data.day}`;
+    delivery.innerText = `delivery ${data.hour}\:${data.minute} ${data.clock.toUpperCase()} on ${data.month}/${data.day}`;
     const stage = document.createElement("p");
     stage.innerText = data.stage;
     if ((!(data.other == "")) && (!(data.other == null)) && (!(data.other == undefined))) {
@@ -673,9 +635,9 @@ function itemAddPressed() { //grabs data from itemAdd dialog then runs addItem()
     globalThis.temp[taskYear][taskMonth] = globalThis.temp[taskYear][taskMonth] || {};
     globalThis.temp[taskYear][taskMonth][taskDay] = globalThis.temp[taskYear][taskMonth][taskDay] || {};
     globalThis.temp[taskYear][taskMonth][taskDay][itemId] = object;
-    //window.localStorage.setItem("temp", JSON.stringify(globalThis.temp));
     updateLocalStorage();
-    window.location.reload();
+    uiLoginSetup();
+    saveNowButton(1);
 }
 function itemAddStage(thisElement) {
     if (thisElement.value === "custom") {
@@ -754,13 +716,10 @@ function itemEditOpen(thisItem) {
     editHold.dataset.day = day;
     //show the edit dialog
     document.getElementById("itemEdit").showModal();
-    //remove the item temporarily from the database
-    delete globalThis.temp[year][month][day][content["id"]];
-    updateLocalStorage();
 }
 function itemEditClose() {
     document.getElementById("itemEdit").close();
-    const editHold = document.getElementById("editHold");
+    /* const editHold = document.getElementById("editHold");
     const data = JSON.parse(editHold.innerText);
     const column = editHold.dataset.column;
     //addItem(column, data);
@@ -769,7 +728,7 @@ function itemEditClose() {
     const day = editHold.dataset.day;
     const id = editHold.dataset.id;
     globalThis.temp[year][month][day][id] = data;
-    updateLocalStorage();
+    updateLocalStorage(); */
 }
 function itemEditCheck(thisElement = document.getElementById("editCheck")) {
     if (thisElement.src.includes("true")) {
@@ -863,13 +822,14 @@ function itemEditPressed() {
     console.log(taskDay);
     console.groupEnd();
     console.groupEnd();
-    //add item to dashboard and globalThis.temp
+    //add item to globalThis.temp
     globalThis.temp[taskYear] = globalThis.temp[taskYear] || {};
     globalThis.temp[taskYear][taskMonth] = globalThis.temp[taskYear][taskMonth] || {};
     globalThis.temp[taskYear][taskMonth][taskDay] = globalThis.temp[taskYear][taskMonth][taskDay] || {};
     globalThis.temp[taskYear][taskMonth][taskDay][itemId] = object;
     updateLocalStorage();
-    window.location.reload();
+    uiLoginSetup();
+    saveNowButton(1);
 }
 function itemEditStage(thisElement) {
     if (thisElement.value === "custom") {

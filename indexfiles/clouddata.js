@@ -20,6 +20,7 @@ window.addEventListener("message", (event) => {
             type: "GITHUB_SAVE_SEND",
             payload: localStorage.getItem("temp")
         }, worker);
+        saveNowButton(0);
     }
 });
 
