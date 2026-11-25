@@ -21,8 +21,11 @@ Pretty self-explanatory...
 - [ ] Add a color-code chart to the bottom of the screen or something. Its entire div tag would be passed from the backend, and the frontend just appends it to the end of the document. That way, guest users won't see the color-code chart (because div style="display:none;") but registered premium users can have the color-code chart.
 - [ ] Add something in navbar to view plan info, and premium users can see who else is on their team and therefore can view their info
 - [x] Change the CSS design of buttons and stuff, to have it match the input styles; in addition to :hover, also add :focus for keyboard accessibility
-- [ ] Fix bug where reloading the page while editing an item will make the item disappear
+- [x] Fix bug where reloading the page while editing an item will make the item disappear
 - [ ] When connecting localStorage to the cloud, figure out how to check for new data upon a new session or something without making it happen whenever reload is for resetting the dashboard
+- [ ] Add "leave? changes you make may not be saved" whenever user attempts to leave and saveNowButton is enabled
+- [ ] Fetch new data upon page reload
+- [ ] Editing items and editing the time doesn't save the correct am/pm, fix this bug
 
 
 ## Do This Sometime Within The Next 314 Years
