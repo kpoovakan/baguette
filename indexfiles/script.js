@@ -185,6 +185,7 @@ const d = new Date();
 const currentYear = d.getFullYear().toString();
 const currentMonth = d.getMonth().toString();
 const currentDay = d.getDate().toString();
+globalThis.unsaved = 0;
 
 window.addEventListener("load", function() {
     if (!window.localStorage.getItem("temp")) {
@@ -199,6 +200,14 @@ window.addEventListener("load", function() {
         globalThis.temp = window.localStorage.getItem("temp");
         globalThis.temp = JSON.parse(globalThis.temp);
         uiLoginSetup();
+    }
+});
+window.addEventListener("beforeunload", (event) => {
+    if (globalThis.unsaved) {
+        event.preventDefault();
+        legacyMessage = "Are you sure you want to leave Baguette? The changes you made won't be saved."
+        event.returnValue = legacyMessage;
+        return legacyMessage;
     }
 });
 
@@ -224,11 +233,13 @@ function saveNowButton(save) { // 1 for save, 0 for saved, changes the appearnac
         button.style.pointerEvents = "auto";
         button.innerText = "save now";
         button.setAttribute("onclick", "userSave()");
+        globalThis.unsaved = 1;
     } else if (save === 0) {
         button.style.color = "color-mix(in oklab, #00000000 50%, var(--colorForeground))";
         button.style.pointerEvents = "none";
         button.innerText = "saved to cloud";
         button.removeAttribute("onclick");
+        globalThis.unsaved = 0;
     } else {
         console.error(`function saveNowButton has wrong parameter: ${save}`);
     }
