@@ -45,6 +45,7 @@ const contentLoggedIn = `
         <a href="javascript:void(0);" onclick="clouddataLogout()">logout</a>
     </p>
     <button class="svgAddNew" onclick="itemAddOpen()">${svgAddNew}</button>
+    <div class="colorCoding" id="colorCoding"></div>
 
     <div class="dayContainer">
         <div class="dayColumn" id="day1"></div>
@@ -95,6 +96,7 @@ const contentLoggedIn = `
             <option value="custom">custom...</option>
         </select>
         <textarea id="stageCustom" placeholder="describe this custom stage of production..." autocomplete="off" style="display: none;"></textarea>
+        <div id="addItemColorCoding"></div>
         <select id="color" autocomplete="off">
             <option value="default" disabled selected hidden>item color-coding</option>
             <option value="yellow">sunshine yellow</option>
@@ -151,6 +153,7 @@ const contentLoggedIn = `
             <option value="custom">custom...</option>
         </select>
         <textarea id="editStageCustom" placeholder="describe this custom stage of production..." autocomplete="off" style="display: none;"></textarea>
+        <div id="editItemColorCoding"></div>
         <select id="editColor" autocomplete="off">
             <option value="default" disabled selected hidden>item color-coding</option>
             <option value="yellow">sunshine yellow</option>
@@ -364,6 +367,51 @@ function dayHeaders() {
         cur.innerText = day;
         document.getElementById(`day${i+1}`).appendChild(cur);
     }
+}
+function colorsFooters(data) { // pass the entire received thing as the data, not just the colors object
+    const json = JSON.parse(data);
+    const dataColors = json.colors;
+    if ((!dataColors) || dataColors === undefined) return;
+    const divColors = document.createElement("p");
+    const yellow = colorSpan("yellow", dataColors);
+    const green = colorSpan("green", dataColors);
+    const teal = colorSpan("teal", dataColors);
+    const purple = colorSpan("purple", dataColors);
+    const blue = colorSpan("blue", dataColors);
+    const red = colorSpan("red", dataColors);
+    const pink = colorSpan("pink", dataColors);
+    const orange = colorSpan("orange", dataColors);
+    divColors.appendChild(yellow);
+    console.log(divColors);
+    divColors.appendChild(green);
+    divColors.appendChild(teal);
+    divColors.appendChild(purple);
+    divColors.appendChild(blue);
+    divColors.appendChild(red);
+    divColors.appendChild(pink);
+    divColors.appendChild(orange);
+    document.getElementById("colorCoding").appendChild(divColors);
+    const addItem = divColors.cloneNode(true);
+    const editItem = divColors.cloneNode(true);
+    document.getElementById("addItemColorCoding").appendChild(addItem);
+    document.getElementById("editItemColorCoding").appendChild(editItem);
+}
+function colorSpan(color, data) {
+    const colors = {
+        pink:"#ff33dd",
+        purple:"#bf96ca",
+        teal:"#8bd5cd",
+        yellow:"#ffd000",
+        green:"#98c28a",
+        blue:"#140094",
+        red:"#d30000",
+        orange:"#ff7700"
+    };
+    const cur = document.createElement("span");
+    cur.style.color = colors[color];
+    cur.innerText = data[color];
+    cur.innerText = data[color] + "⠀⠀⠀"
+    return cur;
 }
 
 function itemMove(thisElement, after, cont) {

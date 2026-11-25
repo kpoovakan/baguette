@@ -34,6 +34,8 @@ body {
     font-style: normal;
     font-size: 62.5%;
     display: block;
+    padding: 0;
+    margin: 3px;
 }
 p {
     font-size: 1.1rem;
@@ -153,9 +155,22 @@ button:hover, button:focus {
 .svgAddNew {
     padding: 9px;
     position: fixed;
-    bottom: 13px;
-    right: 13px;
+    bottom: 3px;
+    right: 3px;
     margin: 0;
+}
+.colorCoding {
+    padding: 9px;
+    position: fixed;
+    bottom: 3px;
+    left: 3px;
+    margin: 0;
+    background-color: var(--colorBackground);
+    color: var(--colorForeground);
+}
+.colorCoding:hover {
+    background-color: transparent;
+    color: transparent !important;
 }
 
 .dayContainer {
