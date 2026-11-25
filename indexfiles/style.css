@@ -166,11 +166,41 @@ button:hover, button:focus {
     left: 3px;
     margin: 0;
     background-color: var(--colorBackground);
-    color: var(--colorForeground);
 }
 .colorCoding:hover {
     background-color: transparent;
     color: transparent !important;
+}
+.coloryellow {
+    color: #ffd000;
+}
+.colorgreen {
+    color: #98c28a;
+}
+.colorteal {
+    color: #8bd5cd;
+}
+.colorpurple {
+    color: #bf96ca;
+}
+.colorblue {
+    color: #140094;
+}
+.colorred {
+    color: #d30000
+}
+.colorpink {
+    color: #ff33dd;
+}
+.colororange {
+    color: #ff7700;
+}
+/*.coloryellow, .colorgreen, .colorteal, .colorpurple, .colorblue, .colorred, .colorpink, .colororange {
+    -webkit-text-stroke: 3px var(--colorForeground);
+    paint-order: stroke fill;
+}*/
+.coloryellow:hover, .colorgreen:hover, .colorteal:hover, .colorpurple:hover, .colorblue:hover, .colorred:hover, .colorpink:hover, .colororange:hover {
+    color: transparent;
 }
 
 .dayContainer {

@@ -408,7 +408,7 @@ function colorSpan(color, data) {
         orange:"#ff7700"
     };
     const cur = document.createElement("span");
-    cur.style.color = colors[color];
+    cur.className = `color${color}`;
     cur.innerText = data[color];
     cur.innerText = data[color] + "⠀⠀⠀"
     return cur;
