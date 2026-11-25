@@ -375,8 +375,7 @@ function dayHeaders() {
 }
 function colorCoding(data) { // pass the entire received thing as the data, not just the colors object
     //make the footer at the bottom of dashboard
-    const json = JSON.parse(data);
-    const dataColors = json.colors;
+    const dataColors = data.colors;
     if ((!dataColors) || dataColors === undefined) return;
     const divColors = document.createElement("p");
     const yellow = colorSpan("yellow", dataColors);
