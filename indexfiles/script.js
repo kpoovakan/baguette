@@ -205,7 +205,7 @@ window.addEventListener("load", function() {
 window.addEventListener("beforeunload", (event) => {
     if (globalThis.unsaved) {
         event.preventDefault();
-        legacyMessage = "Are you sure you want to leave Baguette? The changes you made won't be saved."
+        let legacyMessage = "Are you sure you want to leave Baguette? The changes you made won't be saved."
         event.returnValue = legacyMessage;
         return legacyMessage;
     }
