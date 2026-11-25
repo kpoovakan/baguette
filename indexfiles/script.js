@@ -232,7 +232,7 @@ function saveNowButton(save) { // 1 for save, 0 for saved, changes the appearnac
         button.style.color = "var(--colorForeground)";
         button.style.pointerEvents = "auto";
         button.innerText = "save now";
-        button.setAttribute("onclick", "userSave()");
+        button.setAttribute("onclick", "userSave(); buttonColor(this);");
         globalThis.unsaved = 1;
     } else if (save === 0) {
         button.style.color = "color-mix(in oklab, #00000000 50%, var(--colorForeground))";
@@ -244,6 +244,10 @@ function saveNowButton(save) { // 1 for save, 0 for saved, changes the appearnac
         console.error(`function saveNowButton has wrong parameter: ${save}`);
     }
     //console.log("saveNowButton triggered");
+}
+function buttonColor(thisElement) {
+    thisElement.style.color = "var(--colorAccent)";
+    thisElement.innerText = "saving...";
 }
 function uiLoginSetup() {
     document.getElementById("contentMain").innerHTML = contentLoggedIn;
