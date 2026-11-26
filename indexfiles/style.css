@@ -296,6 +296,9 @@ fuschia, purple, teal, yellow, green, blue, red, orange */
 .str {
     font-weight: 600;
 }
+.str:focus {
+    outline: none;
+}
 
 dialog {
     background-color: var(--colorBackground);
