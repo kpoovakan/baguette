@@ -30,7 +30,7 @@ Pretty self-explanatory...
 
 
 ## Do This Sometime Within The Next 314 Years
-- [ ] Button to request data deletion
+- [x] Button to request data deletion
 - [ ] Some way to contact developer
 - [ ] Meta tags for description, gsc, responsiveness, and language, then remove the noindex
 - [x] In function for adding items to days, make it also automatically add the item to the dashboard without having to reload the page
