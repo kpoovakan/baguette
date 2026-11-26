@@ -36,7 +36,7 @@ window.addEventListener("message", (event) => {
         }
         window.localStorage.setItem("info", json);
         globalThis.info = json;
-        //window.location.reload();
+        window.location.reload();
     } else if (data && data.type === 'GITHUB_SAVE_SUCCESS') {
         globalThis.backendSave.postMessage({
             type: "GITHUB_SAVE_SEND",
