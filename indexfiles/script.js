@@ -978,3 +978,12 @@ function accountDetailsSetup(data = {}) {
     div.appendChild(names);
     document.getElementById("accountDetails").appendChild(div);
 }
+function accountDetailsRequestDeletion() {
+    const confirm = window.confirm("you are about to DELETE ALL ACCOUNT DATA, for your account AND for everyone on your team or plan. this includes user info, item history, baking data, and more. this PERMANENTLY deletes ALL DATA for EVERYONE, both local data and CLOUDDATA. press ok to proceed, or press CANCEL to cancel.");
+    if (!confirm) return;
+    globalThis.temp = "{}";
+    updateLocalStorage();
+    userSave();
+    alert("your data has been queued for deletion successfully. during this period of data retention, you may CONTACT THE DEVELOPER if this was an accident and you would like to restore your data.");
+    window.location.reload();
+}
