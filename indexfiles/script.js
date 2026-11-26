@@ -39,9 +39,9 @@ const contentLoggedOut = `
 const contentLoggedIn = `
     <h1 style="margin: 0; color: var(--colorAccent);">Baguette</h1>
     <p class="header">
-        <a href="javascript:void(0);" id="saveNowButton" style="pointer-events: none; color: color-mix(in oklab, #00000000 50%, var(--colorForeground))">cloud sync</a>⠀⠀⠀
-        <a href="https://github.com/kpoovakan/baguette/blob/main/README.md">docs</a>⠀⠀⠀
-        <!--<a href="javascript:void(0);">settings</a>⠀⠀⠀-->
+        <a href="javascript:void(0);" id="saveNowButton" style="pointer-events: none; color: color-mix(in oklab, #00000000 50%, var(--colorForeground));">cloud sync</a>⠀⠀⠀
+        <a href="https://github.com/kpoovakan/baguette/blob/main/README.md">help / docs</a>⠀⠀⠀
+        <a href="javascript:void(0);" onclick="accountDetailsOpen()">account / team</a>⠀⠀⠀
         <a href="javascript:void(0);" onclick="clouddataLogout()">logout</a>
     </p>
     <button class="svgAddNew" onclick="itemAddOpen()">${svgAddNew}</button>
@@ -175,6 +175,16 @@ const contentLoggedIn = `
             <button onclick="itemEditClose()" style="flex: 1;">cancel changes</button>
         </div>
         <p style="display: none;" id="editHold">this temporarily holds information, like the item id</p>
+    </dialog>
+
+    <dialog id="accountDetails">
+        <p class="str" tabindex="-1" autofocus>your account and team info</p>
+        <div id="accountDetailsInfo">
+            <p>welcome! your account uses the <span class="str">guest plan</span>. your saved clouddata may be overrided by other guests or deleted by the developer at any time; this plan is built for the sole purpose of testing Baguette as a "demo", not for commercial purposes.</p>
+            <p>when testing out Baguette, please remember that your theoretical bakery item names, made-up customer names, and delivery times are accessible to all other guests until the data is deleted by the developer. additionally, please keep everything <span class="str">kid-friendly</span>. if you wouldn't say it to a ten-year-old, then don't say it here. failure to follow these rules could result in a ban from Baguette's demo guest plan, along with a refusal to consider providing you with any of our premium services.</p>
+        </div>
+        <button onclick="accountDetailsClose()">return to Baguette</button>
+        <button onclick="accountDetailsRequestDeletion()">request data deletion</button>
     </dialog>
 `;
 
@@ -665,6 +675,9 @@ function itemAddPressed() { //grabs data from itemAdd dialog then runs addItem()
     if ((hour - 12) > 0) {
         var hour = hour - 12;
         var clock = "pm";
+    } else if (hour == 12) {
+        var hour = 12;
+        var clock = "pm";
     } else var clock = "am";
     var hour = Number(hour);
     const minute = Number( time.at(3).toString() + time.at(4).toString() );
@@ -864,6 +877,9 @@ function itemEditPressed() {
     if ((hour - 12) > 0) {
         var hour = hour - 12;
         var clock = "pm";
+    } else if (hour == 12) {
+        var hour = 12;
+        var clock = "pm";
     } else var clock = "am";
     var hour = Number(hour);
     const minute = Number( time.at(3).toString() + time.at(4).toString() );
@@ -922,4 +938,42 @@ function updateLocalStorage(newData = globalThis.temp) {
     globalThis.temp = newData || globalThis.temp;
     let stringy = JSON.stringify(globalThis.temp);
     window.localStorage.setItem("temp", stringy);
+}
+
+function accountDetailsOpen() {
+    document.getElementById("accountDetails").showModal();
+}
+function accountDetailsClose() {
+    document.getElementById("accountDetails").close();
+}
+function accountDetailsSetup(data = {}) {
+    if ((!data.info) || (data.info === undefined)) {
+        document.getElementById("accountDetails").showModal();
+        return;
+    }
+    const intro = document.createElement("p");
+    intro.innerText = "the following users are part of your team's premium plan and can view all of your clouddata for Baguette. additionally, Baguette's developer (kpoovakan) can access your team's clouddata.";
+    document.getElementById("accountDetails").appendChild(intro);
+    const info = data.info;
+    document.getElementById("accountDetailsInfo").remove();
+    const div = document.createElement("div");
+    div.style.display = "flex";
+    div.style.gap = "13px";
+    const imgs = document.createElement("div");
+    imgs.className = "accountDetailsImgs";
+    for (let i = 0; i < info.length; i++) {
+        let cur = document.createElement("img");
+        cur.src = `https://github.com/${info[i]}.png`;
+        imgs.appendChild(cur);
+    }
+    const names = document.createElement("div");
+    names.className = "accountDetailsNames";
+    for (let i = 0; i < info.length; i++) {
+        let cur = document.createElement("p");
+        cur.innerText = info[i];
+        names.appendChild(cur);
+    }
+    div.appendChild(imgs);
+    div.appendChild(names);
+    document.getElementById("accountDetails").appendChild(div);
 }

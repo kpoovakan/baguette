@@ -401,3 +401,24 @@ textarea:focus {
 .addItemFlex > img:hover {
     cursor: pointer;
 }
+.accountDetailsImgs {
+    width: 31px;
+    flex: 0;
+    margin: 13px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+.accountDetailsNames {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 13px 0;
+    gap: 13px;
+    padding: 0;
+}
+.accountDetailsNames > * {
+    margin: 0;
+    padding: 0;
+    height: 31px;
+}
