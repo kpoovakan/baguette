@@ -8,14 +8,29 @@ window.addEventListener("message", (event) => {
         /*const username = data.payload.username;
         console.log(`Your username is ${username}`);*/
         globalThis.temp = data.payload;
-        let idk = JSON.stringify(globalThis.temp.content);
+        if (typeof globalThis.temp === "object") {
+            var idk = JSON.stringify(globalThis.temp.content)
+        } else {
+            for (var idk = globalThis.temp; typeof idk === "object";) {
+                var idk = JSON.parse(idk);
+            }
+            var idk = JSON.stringify(idk);
+        }
         window.localStorage.setItem("temp", idk);
+        globalThis.temp = JSON.parse(idk);
         //window.localStorage.setItem("etag", globalThis.temp.etag);
         //window.localStorage.setItem("sha", globalThis.temp.sha);
         // etag and sha don't seem to be working... fix this later
         globalThis.temp = idk;
         globalThis.info = data.frontend;
-        let json = JSON.stringify(globalThis.info);
+        if (typeof globalThis.info === "object") {
+            var json = JSON.stringify(globalThis.info);
+        } else {
+            for (var json = globalThis.info; typeof json === "object";) {
+                var json = JSON.parse(json);
+            }
+            var json = JSON.stringify(json);
+        }
         window.localStorage.setItem("info", json);
         globalThis.info = json;
         window.location.reload();
