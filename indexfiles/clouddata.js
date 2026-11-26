@@ -9,13 +9,15 @@ window.addEventListener("message", (event) => {
         console.log(`Your username is ${username}`);*/
         globalThis.temp = data.payload;
         if (typeof globalThis.temp === "object") {
-            var idk = JSON.stringify(globalThis.temp.content)
+            var idk = JSON.stringify(globalThis.temp.content);
         } else {
             for (var idk = globalThis.temp; typeof idk === "object";) {
                 var idk = JSON.parse(idk);
+                console.log(idk);
             }
             var idk = JSON.stringify(idk);
         }
+        console.log(idk);
         window.localStorage.setItem("temp", idk);
         globalThis.temp = JSON.parse(idk);
         //window.localStorage.setItem("etag", globalThis.temp.etag);
@@ -28,6 +30,7 @@ window.addEventListener("message", (event) => {
         } else {
             for (var json = globalThis.info; typeof json === "object";) {
                 var json = JSON.parse(json);
+                console.log(json);
             }
             var json = JSON.stringify(json);
         }
