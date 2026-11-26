@@ -11,7 +11,7 @@ window.addEventListener("message", (event) => {
         if (typeof globalThis.temp === "object") {
             var idk = JSON.stringify(globalThis.temp.content);
         } else {
-            for (var idk = globalThis.temp; typeof idk === "object";) {
+            for (var idk = globalThis.temp; typeof idk === "string";) {
                 var idk = JSON.parse(idk);
                 console.log(idk);
             }
@@ -28,7 +28,7 @@ window.addEventListener("message", (event) => {
         if (typeof globalThis.info === "object") {
             var json = JSON.stringify(globalThis.info);
         } else {
-            for (var json = globalThis.info; typeof json === "object";) {
+            for (var json = globalThis.info; typeof json === "string";) {
                 var json = JSON.parse(json);
                 console.log(json);
             }
@@ -36,7 +36,7 @@ window.addEventListener("message", (event) => {
         }
         window.localStorage.setItem("info", json);
         globalThis.info = json;
-        window.location.reload();
+        //window.location.reload();
     } else if (data && data.type === 'GITHUB_SAVE_SUCCESS') {
         globalThis.backendSave.postMessage({
             type: "GITHUB_SAVE_SEND",
