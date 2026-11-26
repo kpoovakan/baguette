@@ -326,7 +326,7 @@ function getDaysThisWeek(daysInMonth) { // returns an array of the week's days a
             let day = Number(currentDay);
             day = day + i; //the day being tracked for this i
             document.getElementById(`day${i+1}`).dataset.tempId = `${currentYear} ${currentMonth} ${day}`; //don't delete those spaces, this adds custom attribute with identifier for referring back to temp later
-            let cur = globalThis.temp[currentYear][currentMonth];
+            let cur = globalThis.temp[currentYear][currentMonth] || undefined;
             if (cur === undefined) {
                 array.push(undefined);
                 continue; //cancels rest of loop for the turn and goes to next i
