@@ -292,6 +292,7 @@ function uiLoginSetup() {
         globalThis.info = window.localStorage.getItem("info");
         globalThis.info = JSON.parse(globalThis.info);
         colorCoding(globalThis.info);
+        accountDetailsSetup(globalThis.info);
     }
 }
 function getDaysThisWeek(daysInMonth) { // returns an array of the week's days and their content
