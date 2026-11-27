@@ -229,6 +229,12 @@ window.addEventListener("beforeunload", (event) => {
 function clouddataLogin() {
     userLogin();
     uiLoginSetup();
+    if (window.localStorage.getItem("info")) {
+        globalThis.info = window.localStorage.getItem("info");
+        globalThis.info = JSON.parse(globalThis.info);
+        colorCoding(globalThis.info);
+        accountDetailsSetup(globalThis.info);
+    }
 }
 function clouddataLogout() {
     const confirmLogout = window.confirm("are you sure you want to log out? unsaved changes will be permanently lost.");
@@ -290,12 +296,6 @@ function uiLoginSetup() {
             //console.log(curData);
             addItem(i+1, curData);
         }
-    }
-    if (window.localStorage.getItem("info")) {
-        globalThis.info = window.localStorage.getItem("info");
-        globalThis.info = JSON.parse(globalThis.info);
-        colorCoding(globalThis.info);
-        accountDetailsSetup(globalThis.info);
     }
 }
 function getDaysThisWeek(daysInMonth) { // returns an array of the week's days and their content
