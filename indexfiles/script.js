@@ -319,7 +319,7 @@ function getDaysThisWeek(daysInMonth) { // returns an array of the week's days a
             } else {
                 array.push(cur);
             }
-            document.getElementById(`day${i+1}`).dataset.tempId = `${currentYear} ${currentMonth} ${day}`; //don't delete those spaces
+            document.getElementById(`day${i+1}`).dataset.tempId = `${currentYear} ${String(currentMonth).padStart(2, "0")} ${String(day).padStart(2, "0")}`; //don't delete those spaces
         }
         return array;
     } else { //oh no, this week includes two months!
@@ -330,7 +330,7 @@ function getDaysThisWeek(daysInMonth) { // returns an array of the week's days a
         for (let i = 0; i < firstMonth; i++) {
             let day = Number(currentDay);
             day = day + i; //the day being tracked for this i
-            document.getElementById(`day${i+1}`).dataset.tempId = `${currentYear} ${currentMonth} ${day}`; //don't delete those spaces, this adds custom attribute with identifier for referring back to temp later
+            document.getElementById(`day${i+1}`).dataset.tempId = `${currentYear} ${String(currentMonth).padStart(2, "0")} ${String(day).padStart(2, "0")}`; //don't delete those spaces, this adds custom attribute with identifier for referring back to temp later
             if (typeof globalThis.temp === "string") {
                 for (globalThis.temp; typeof globalThis.temp === "string";) {
                     globalThis.temp = JSON.parse(globalThis.temp);
@@ -369,7 +369,7 @@ function getDaysThisWeek(daysInMonth) { // returns an array of the week's days a
             let cur = globalThis.temp[newYear][month];
             if (cur === undefined) {
                 array.push(undefined);
-                document.getElementById(`day${array.length}`).dataset.tempId = `${newYear} ${month} ${day}`; //don't delete those spaces, this adds custom attribute with identifier for referring back to temp later
+                document.getElementById(`day${array.length}`).dataset.tempId = `${newYear} ${String(month).padStart(2, "0")} ${String(day).padStart(2, "0")}`; //don't delete those spaces, this adds custom attribute with identifier for referring back to temp later
                 continue;
             }
             cur = cur[day];
@@ -378,7 +378,7 @@ function getDaysThisWeek(daysInMonth) { // returns an array of the week's days a
             } else {
                 array.push(cur);
             }
-            document.getElementById(`day${array.length}`).dataset.tempId = `${newYear} ${month.padStart(2, "0")} ${day.padStart(2, "0")}`; //don't delete those spaces, this adds custom attribute with identifier for referring back to temp later
+            document.getElementById(`day${array.length}`).dataset.tempId = `${newYear} ${String(month).padStart(2, "0")} ${String(day).padStart(2, "0")}`; //don't delete those spaces, this adds custom attribute with identifier for referring back to temp later
         }
         return array; //I hope this works...
     }
@@ -760,7 +760,14 @@ function itemEditOpen(thisItem) {
     tempId = tempId.toString();
     const year = tempId.at(0).toString() + tempId.at(1).toString() + tempId.at(2).toString() + tempId.at(3).toString();
     const month = String(Number( tempId.at(5).toString() + tempId.at(6).toString() ));
-    const day = String(Number( tempId.at(8).toString() + tempId.at(9).toString() ));
+    if (month.at(6) == " ") {
+        var day = String(Number( tempId.at(7).toString() + tempId.at(8).toString() ));
+        if (day === undefined) {
+            var day = tempId.at(7);
+        }
+    } else {
+        var day = String(Number( tempId.at(8).toString() + tempId.at(9).toString() ));
+    }
     const content = globalThis.temp[year][month][day][thisItem.id];
     //console.log(content);
     //match the data to variables
