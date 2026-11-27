@@ -217,7 +217,7 @@ window.addEventListener("load", function() {
         uiLoginSetup();
     }
     let info = window.localStorage.getItem("info");
-    if ((!info) || (info === undefined) || (info === null)) {
+    if ((!info) || (info === undefined) || (info === null) || (info == "{}") || (info == {})) {
         document.getElementById("accountDetails").showModal();
     }
 });
