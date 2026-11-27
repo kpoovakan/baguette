@@ -162,10 +162,11 @@ button:hover, button:focus {
 .colorCoding {
     padding: 9px;
     position: fixed;
-    bottom: 3px;
-    left: 3px;
+    bottom: 0;
+    left: 0;
     margin: 0;
     background-color: var(--colorBackground);
+    z-index: 314159265358979;
 }
 .colorCoding:hover {
     background-color: transparent;
@@ -195,10 +196,11 @@ button:hover, button:focus {
 .colororange {
     color: #ff7700;
 }
-/*.coloryellow, .colorgreen, .colorteal, .colorpurple, .colorblue, .colorred, .colorpink, .colororange {
-    -webkit-text-stroke: 3px var(--colorForeground);
-    paint-order: stroke fill;
-}*/
+.coloryellow, .colorgreen, .colorteal, .colorpurple, .colorblue, .colorred, .colorpink, .colororange {
+    /*-webkit-text-stroke: 3px var(--colorForeground);
+    paint-order: stroke fill;*/
+    z-index: 31415926535897932384626433;
+}
 .coloryellow:hover, .colorgreen:hover, .colorteal:hover, .colorpurple:hover, .colorblue:hover, .colorred:hover, .colorpink:hover, .colororange:hover {
     color: transparent;
 }
