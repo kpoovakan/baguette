@@ -28,7 +28,7 @@ Pretty self-explanatory...
 - [x] Editing items and editing the time doesn't save the correct am/pm, fix this bug
 - [x] Fix bug where the popup when sending data to cloud won't be closed and therefore saveNowButton(0) doesn't run
 - [x] Fix bug where running uiLoginSetup() as a guest (after updating the dashboard from adding or editing items) it opens the welcome (account+team) dialog every time
-- [ ] Add warning for small screens
+- [x] Add warning for small screens
 - [ ] Finish Features section of logged-out page
 
 
