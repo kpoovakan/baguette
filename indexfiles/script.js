@@ -215,10 +215,10 @@ window.addEventListener("load", function() {
         globalThis.temp = window.localStorage.getItem("temp");
         globalThis.temp = JSON.parse(globalThis.temp);
         uiLoginSetup();
-        let info = window.localStorage.getItem("info");
-        if ((!info) || (info === undefined) || (info === null)) {
-            document.getElementById("accountDetails").showModal();
-        }
+    }
+    let info = window.localStorage.getItem("info");
+    if ((!info) || (info === undefined) || (info === null)) {
+        document.getElementById("accountDetails").showModal();
     }
 });
 window.addEventListener("beforeunload", (event) => {
