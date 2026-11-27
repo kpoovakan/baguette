@@ -215,6 +215,12 @@ window.addEventListener("load", function() {
         globalThis.temp = window.localStorage.getItem("temp");
         globalThis.temp = JSON.parse(globalThis.temp);
         uiLoginSetup();
+        if (window.localStorage.getItem("info")) {
+            globalThis.info = window.localStorage.getItem("info");
+            globalThis.info = JSON.parse(globalThis.info);
+            colorCoding(globalThis.info);
+            accountDetailsSetup(globalThis.info);
+        }
     }
 });
 window.addEventListener("beforeunload", (event) => {
@@ -229,12 +235,6 @@ window.addEventListener("beforeunload", (event) => {
 function clouddataLogin() {
     userLogin();
     uiLoginSetup();
-    if (window.localStorage.getItem("info")) {
-        globalThis.info = window.localStorage.getItem("info");
-        globalThis.info = JSON.parse(globalThis.info);
-        colorCoding(globalThis.info);
-        accountDetailsSetup(globalThis.info);
-    }
 }
 function clouddataLogout() {
     const confirmLogout = window.confirm("are you sure you want to log out? unsaved changes will be permanently lost.");
