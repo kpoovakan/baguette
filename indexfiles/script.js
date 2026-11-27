@@ -183,7 +183,7 @@ const contentLoggedIn = `
             <p>welcome! your account uses the <span class="str">guest plan</span>. your saved clouddata may be overrided by other guests or deleted by the developer at any time; this plan is built for the sole purpose of testing Baguette as a "demo", not for commercial purposes.</p>
             <p>when testing out Baguette, please remember that your theoretical bakery item names, made-up customer names, and delivery times are accessible to all other guests until the data is deleted by the developer. additionally, please keep everything <span class="str">kid-friendly</span>. if you wouldn't say it to a ten-year-old, then don't say it here. failure to follow these rules could result in a ban from Baguette's demo guest plan, along with a refusal to consider providing you with any of our premium services.</p>
         </div>
-        <div class="mainHeaderButtonsContainer" style="float: none; position: absolute; bottom: 13px;">
+        <div class="mainHeaderButtonsContainer" style="float: none; position: absolute; bottom: 13px; right: 13px;">
             <button onclick="accountDetailsRequestDeletion()" class="mainHeaderButtons mainHeaderLess">request data deletion</button>
             <button onclick="accountDetailsClose()" class="mainHeaderButtons">return to Baguette</button>
         </div>
