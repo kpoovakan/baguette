@@ -378,7 +378,7 @@ function getDaysThisWeek(daysInMonth) { // returns an array of the week's days a
             } else {
                 array.push(cur);
             }
-            document.getElementById(`day${array.length}`).dataset.tempId = `${newYear} ${month} ${day}`; //don't delete those spaces, this adds custom attribute with identifier for referring back to temp later
+            document.getElementById(`day${array.length}`).dataset.tempId = `${newYear} ${month.padStart(2, "0")} ${day.padStart(2, "0")}`; //don't delete those spaces, this adds custom attribute with identifier for referring back to temp later
         }
         return array; //I hope this works...
     }
