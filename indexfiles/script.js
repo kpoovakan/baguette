@@ -238,6 +238,7 @@ function clouddataLogout() {
     window.localStorage.removeItem("temp");
     window.localStorage.removeItem("sha");
     window.localStorage.removeItem("etag");
+    window.localStorage.removeItem("info");
     window.location.reload();
 }
 
