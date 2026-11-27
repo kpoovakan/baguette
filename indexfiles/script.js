@@ -215,11 +215,9 @@ window.addEventListener("load", function() {
         globalThis.temp = window.localStorage.getItem("temp");
         globalThis.temp = JSON.parse(globalThis.temp);
         uiLoginSetup();
-        if (window.localStorage.getItem("info")) {
-            globalThis.info = window.localStorage.getItem("info");
-            globalThis.info = JSON.parse(globalThis.info);
-            colorCoding(globalThis.info);
-            accountDetailsSetup(globalThis.info);
+        let info = window.localStorage.getItem("info");
+        if ((!info) || (info === undefined) || (info === null)) {
+            document.getElementById("accountDetails").showModal();
         }
     }
 });
@@ -296,6 +294,12 @@ function uiLoginSetup() {
             //console.log(curData);
             addItem(i+1, curData);
         }
+    }
+    if (window.localStorage.getItem("info")) {
+        globalThis.info = window.localStorage.getItem("info");
+        globalThis.info = JSON.parse(globalThis.info);
+        colorCoding(globalThis.info);
+        accountDetailsSetup(globalThis.info);
     }
 }
 function getDaysThisWeek(daysInMonth) { // returns an array of the week's days and their content
@@ -960,7 +964,6 @@ function accountDetailsClose() {
 }
 function accountDetailsSetup(data = {}) {
     if ((!data.info) || (data.info === undefined)) {
-        document.getElementById("accountDetails").showModal();
         return;
     }
     const intro = document.createElement("p");
