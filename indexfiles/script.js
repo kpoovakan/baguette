@@ -188,6 +188,12 @@ const contentLoggedIn = `
             <button onclick="accountDetailsClose()" class="mainHeaderButtons">return to Baguette</button>
         </div>
     </dialog>
+
+    <dialog id="screenWarning">
+        <p class="str">warning</p>
+        <p>your screen width is small and may not work well with Baguette. if possible, please rotate your device to a landscape orientation. you will not see this warning again.</p>
+        <button onclick="this.parentNode.close()">okay</button>
+    </dialog>
 `;
 
 /* info for how making changes to the dashboard works
@@ -218,7 +224,16 @@ window.addEventListener("load", function() {
     }
     let info = window.localStorage.getItem("info");
     if ((!info) || (info === undefined) || (info === null) || (info == "{}") || (info == {})) {
-        document.getElementById("accountDetails").showModal();
+        if (!(window.localStorage.getItem("welcome"))) {
+            document.getElementById("accountDetails").showModal();
+            window.localStorage.setItem("welcome", 1);
+        }
+    }
+    if (window.innerWidth < 720) {
+        if (!(window.localStorage.getItem("screenWarning"))) {
+            document.getElementById("screenWarning").showModal();
+            window.localStorage.setItem("screenWarning", 1);
+        }
     }
 });
 window.addEventListener("beforeunload", (event) => {
