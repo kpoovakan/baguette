@@ -65,6 +65,7 @@ a:hover, a:focus {
     padding: 13px;
     background-color: var(--colorBackground);
     border-radius: 3px;
+    z-index: 314159265358979;
 }
 
 /*
