@@ -12,10 +12,10 @@ const contentLoggedOut = `
                 <div class="clear"></div>
             </div>
             <h1>Overview</h1>
-            <p>FOR BAKERIES, FROM KPOOVAKAN — Built with small businesses in mind, Baguette is a web app for managing your commercial bakery. Organize orders and plan baking times for every item, and save all data to the cloud to sync across multiple devices.</p>
+            <p>Built with small businesses in mind, Baguette is a web app for managing your commercial bakery. Organize orders and plan baking times for every item, and save all data to the cloud to sync across multiple devices.</p>
             <p>Baguette is free for any professional bakery, including yours!</p>
             <h1>Features</h1>
-            <p>Nothing yet...</p>
+            <p>Keep track of every bakery item with its name, customer, delivery time and date, payment status, and stage of production! Additionally, keep items organized with color-coding and add additional notes when necessary. Bakery items are displayed on an organized dashboard, with a separate column of items for each day. Items can be reorganized, edited, and even marked as completed. Data can be saved to the cloud to sync the dashboard across multiple devices.</p>
             <h1 id="plans">Plans</h1>
             <p>Baguette is completely free, but there are two different clouddata plans to suit your needs.</p>
             <div class="plansContainer">
