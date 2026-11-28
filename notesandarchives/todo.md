@@ -29,7 +29,7 @@ Pretty self-explanatory...
 - [x] Fix bug where the popup when sending data to cloud won't be closed and therefore saveNowButton(0) doesn't run
 - [x] Fix bug where running uiLoginSetup() as a guest (after updating the dashboard from adding or editing items) it opens the welcome (account+team) dialog every time
 - [x] Add warning for small screens
-- [ ] Finish Features section of logged-out page
+- [x] Finish Features section of logged-out page
 
 
 ## Do This Sometime Within The Next 314 Years
