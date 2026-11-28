@@ -45,7 +45,7 @@ a:link, a:visited {
     text-decoration: none;
     font-weight: 600;
 }
-a:hover, a:focus {
+a:hover, a:focus-visible {
     text-decoration: underline;
     text-decoration-style: dashed;
     text-underline-offset: 3px;
@@ -104,7 +104,7 @@ button {
     font-size: 1.1rem;
     font-family: "Radio Canada", sans-serif;
 }
-button:hover, button:focus {
+button:hover, button:focus-visible {
     color: var(--colorAccent);
     background-color: var(--colorBackground);
     cursor: pointer;
@@ -128,7 +128,7 @@ button:hover, button:focus {
     color: color-mix(in oklab, #00000000 50%, var(--colorForeground));
     border-style: dashed;
 }
-.mainHeaderLess:hover, .mainHeaderLess:focus {
+.mainHeaderLess:hover, .mainHeaderLess:focus-visible {
     color: var(--colorBackground);
     border-color: var(--colorForeground);
     background-color: var(--colorForeground);
@@ -268,7 +268,7 @@ fuschia, purple, teal, yellow, green, blue, red, orange */
     border-color: var(--colorForeground);
     padding: 3px;
 }
-.dayBar button:hover, button:focus {
+.dayBar button:hover, button:focus-visible {
     background-color: transparent;
     color: var(--colorForeground);
 }
@@ -329,7 +329,7 @@ input {
     border: 1px solid var(--colorAccent);
     box-sizing: border-box;
 }
-input:focus {
+input:focus-visible {
     outline: none;
     border: 1px dashed var(--colorAccent);
 }
@@ -343,7 +343,7 @@ select {
     border-radius: 3px;
     padding: 3px;
 }
-select:focus {
+select:focus-visible {
     outline: none;
     border: 1px dashed var(--colorAccent);
 }
@@ -365,7 +365,7 @@ textarea {
     border: 1px solid var(--colorAccent);
     padding: 3px;
 }
-textarea:focus {
+textarea:focus-visible {
     outline: none;
     border: 1px dashed var(--colorAccent);
 }
